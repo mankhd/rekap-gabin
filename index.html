@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0d10">
+  <title>Gabin Dashboard — Laporan Penjualan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">G</div>
+        <div>
+          <strong>Gabin</strong>
+          <span>Sales Dashboard</span>
+        </div>
+      </div>
+      <nav>
+        <button class="nav-item active" data-section="dashboard"><span>⌂</span> Dashboard</button>
+        <button class="nav-item" data-section="sales"><span>＋</span> Input Penjualan</button>
+        <button class="nav-item" data-section="history"><span>▤</span> Riwayat</button>
+        <button class="nav-item" data-section="products"><span>◈</span> Produk</button>
+        <button class="nav-item" data-section="settings"><span>⚙</span> Pengaturan</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="storage-card">
+          <div class="mini-label">PENYIMPANAN</div>
+          <b>Local Storage</b>
+          <span>Data tersimpan di browser ini.</span>
+        </div>
+        <button class="theme-btn" id="themeToggle">☾ <span>Mode Gelap/Terang</span></button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu">☰</button>
+        <div>
+          <div class="eyebrow">LAPORAN PENJUALAN & KEUNTUNGAN</div>
+          <h1 id="pageTitle">Dashboard</h1>
+        </div>
+        <div class="top-actions">
+          <div class="date-pill" id="todayLabel">—</div>
+          <button class="primary-btn" data-go="sales">＋ Tambah Penjualan</button>
+        </div>
+      </header>
+
+      <section class="section active" id="section-dashboard">
+        <div class="hero">
+          <div>
+            <span class="hero-kicker">RINGKASAN BISNIS</span>
+            <h2>Kontrol penjualan gabin dalam satu tempat.</h2>
+            <p>Pantau jumlah terjual, omzet, modal, keuntungan, stok, dan performa harian tanpa perlu menghitung manual.</p>
+          </div>
+          <div class="hero-date">
+            <span>Periode aktif</span>
+            <b id="periodLabel">Bulan ini</b>
+          </div>
+        </div>
+
+        <div class="filter-row">
+          <div class="segmented">
+            <button class="period active" data-period="today">Hari Ini</button>
+            <button class="period" data-period="month">Bulan Ini</button>
+            <button class="period" data-period="all">Semua</button>
+          </div>
+          <input type="date" id="dashboardDate">
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <div class="stat-icon">▦</div><div class="stat-label">TOTAL TERJUAL</div>
+            <strong id="statSold">0</strong><span class="stat-note">pcs</span>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon">Rp</div><div class="stat-label">PENGHASILAN / OMZET</div>
+            <strong id="statRevenue">Rp0</strong><span class="stat-note">penjualan</span>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon">↘</div><div class="stat-label">TOTAL MODAL</div>
+            <strong id="statCost">Rp0</strong><span class="stat-note">biaya produksi</span>
+          </article>
+          <article class="stat-card profit">
+            <div class="stat-icon">↗</div><div class="stat-label">KEUNTUNGAN</div>
+            <strong id="statProfit">Rp0</strong><span class="stat-note" id="marginLabel">margin 0%</span>
+          </article>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="panel chart-panel">
+            <div class="panel-head">
+              <div><h3>Grafik Keuntungan</h3><p>Performa keuntungan berdasarkan tanggal</p></div>
+              <span class="badge" id="chartBadge">7 hari</span>
+            </div>
+            <div class="chart-wrap"><canvas id="profitChart"></canvas></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><div><h3>Penjualan Produk</h3><p>Total unit per varian</p></div></div>
+            <div class="product-bars" id="productBars"></div>
+          </article>
+        </div>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div><h3>Ringkasan Harian</h3><p>Sesuai struktur laporan Excel</p></div>
+            <button class="ghost-btn" data-go="history">Lihat Semua →</button>
+          </div>
+          <div class="table-scroll">
+            <table><thead><tr><th>Tanggal</th><th>Terjual</th><th>Penghasilan</th><th>Modal</th><th>Keuntungan</th></tr></thead>
+            <tbody id="dailyTable"></tbody></table>
+          </div>
+        </article>
+      </section>
+
+      <section class="section" id="section-sales">
+        <div class="section-heading"><div><span class="hero-kicker">INPUT DATA</span><h2>Catat Penjualan</h2><p>Masukkan jumlah gabin terjual untuk setiap varian.</p></div></div>
+        <div class="form-layout">
+          <form class="panel sales-form" id="salesForm">
+            <div class="form-top"><h3>Penjualan Harian</h3><input type="date" id="saleDate" required></div>
+            <div class="product-inputs" id="productInputs"></div>
+            <div class="form-summary">
+              <div><span>Total terjual</span><b id="formSold">0 pcs</b></div>
+              <div><span>Omzet</span><b id="formRevenue">Rp0</b></div>
+              <div><span>Modal</span><b id="formCost">Rp0</b></div>
+              <div class="summary-profit"><span>Keuntungan</span><b id="formProfit">Rp0</b></div>
+            </div>
+            <button class="primary-btn wide" type="submit">Simpan Penjualan</button>
+          </form>
+          <aside class="panel tips">
+            <h3>Cara penggunaan</h3>
+            <div class="tip"><b>01</b><span>Pilih tanggal transaksi.</span></div>
+            <div class="tip"><b>02</b><span>Isi jumlah terjual setiap rasa. Biarkan 0 jika tidak ada penjualan.</span></div>
+            <div class="tip"><b>03</b><span>Omzet, modal, dan keuntungan dihitung otomatis dari harga produk.</span></div>
+            <div class="tip"><b>04</b><span>Data dapat diedit kembali melalui menu Riwayat.</span></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="section-history">
+        <div class="section-heading"><div><span class="hero-kicker">DATA TRANSAKSI</span><h2>Riwayat Penjualan</h2><p>Semua ringkasan penjualan yang tersimpan.</p></div><button class="primary-btn" data-go="sales">＋ Input Baru</button></div>
+        <div class="panel">
+          <div class="toolbar"><input id="historySearch" class="search" placeholder="Cari tanggal..."><button class="ghost-btn" id="exportBtn">Export JSON</button><button class="danger-btn" id="clearBtn">Hapus Semua</button></div>
+          <div class="table-scroll"><table><thead><tr><th>Tanggal</th><th>Terjual</th><th>Penghasilan</th><th>Modal</th><th>Keuntungan</th><th>Aksi</th></tr></thead><tbody id="historyTable"></tbody></table></div>
+        </div>
+      </section>
+
+      <section class="section" id="section-products">
+        <div class="section-heading"><div><span class="hero-kicker">KATALOG</span><h2>Produk & Harga</h2><p>Atur harga jual dan modal per pcs.</p></div></div>
+        <div class="products-grid" id="productsGrid"></div>
+      </section>
+
+      <section class="section" id="section-settings">
+        <div class="section-heading"><div><span class="hero-kicker">PENGATURAN</span><h2>Pengaturan Dashboard</h2><p>Kelola data lokal dan tampilan aplikasi.</p></div></div>
+        <div class="settings-grid">
+          <div class="panel"><h3>Data</h3><p class="muted">Data aplikasi disimpan di Local Storage browser. Cocok untuk website GitHub Pages tanpa database.</p><div class="setting-actions"><button class="ghost-btn" id="backupBtn">Backup Data</button><label class="ghost-btn file-btn">Import Data<input type="file" id="importInput" accept=".json"></label></div></div>
+          <div class="panel"><h3>Tentang</h3><p class="muted">Dashboard ini mengikuti struktur laporan: Produk, tanggal, total terjual, penghasilan/omzet, total modal, dan keuntungan.</p><div class="about-chip">Gabin Sales Dashboard • GitHub Ready</div></div>
+        </div>
+      </section>
+
+      <footer>Gabin Sales Dashboard <span>•</span> Data tersimpan lokal di perangkat</footer>
+    </main>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
