@@ -32,3 +32,7 @@ Jangan masukkan `service_role` key ke website.
 Setelah aktif, input dari HP/laptop akan memakai database yang sama. Tombol produk menggunakan `− 0 +`.
 
 Catatan keamanan: policy anonim di atas cocok untuk dashboard pribadi sederhana. Untuk penggunaan publik/serius, gunakan Supabase Auth dan RLS berbasis user.
+
+
+## Konfigurasi
+Project URL dan publishable key Supabase sudah dimasukkan ke `app.js`. Jangan masukkan `service_role` key ke website.
