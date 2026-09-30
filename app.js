@@ -92,8 +92,8 @@ function downloadJSON(){
   const blob=new Blob([JSON.stringify({products,records},null,2)],{type:"application/json"});
   const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="backup-gabin-dashboard.json";a.click();URL.revokeObjectURL(a.href);
 }
-const SUPABASE_URL = "https://lzikpznqgiuxqlxhtenp.supabase.co/rest/v1/";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx6aWtwem5xZ2l1eHFseGh0ZW5wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA3NzcwMjEsImV4cCI6MjEwNjM1MzAyMX0.T2Oz_tArL5aqYtJuprggUSzkFDf7YYztl2_tB3NeMkU";
+const SUPABASE_URL = "https://lzikpznqgiuxqlxhtenp.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_jwFKQXrAmA19nLcloCrdZw_tD3vGkhr";
 let cloud = null;
 const CLOUD_ENABLED = !SUPABASE_URL.includes("PASTE_") && !SUPABASE_ANON_KEY.includes("PASTE_");
 function initCloud(){const el=$("#cloudStatus");if(!CLOUD_ENABLED||!window.supabase){if(el)el.innerHTML='<span class="status-dot"></span><span>Mode lokal — cloud belum dikonfigurasi</span>';return}cloud=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);if(el)el.innerHTML='<span class="status-dot online"></span><span>Cloud aktif — sinkron otomatis</span>'}
