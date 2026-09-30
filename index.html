@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
   <div class="app-shell">
@@ -158,7 +159,7 @@
       <section class="section" id="section-settings">
         <div class="section-heading"><div><span class="hero-kicker">PENGATURAN</span><h2>Pengaturan Dashboard</h2><p>Kelola data lokal dan tampilan aplikasi.</p></div></div>
         <div class="settings-grid">
-          <div class="panel"><h3>Data</h3><p class="muted">Data aplikasi disimpan di Local Storage browser. Cocok untuk website GitHub Pages tanpa database.</p><div class="setting-actions"><button class="ghost-btn" id="backupBtn">Backup Data</button><label class="ghost-btn file-btn">Import Data<input type="file" id="importInput" accept=".json"></label></div></div>
+          <div class="panel"><h3>Sinkronisasi Cloud</h3><p class="muted">Agar data yang dimasukkan dari HP otomatis muncul di laptop dan perangkat lain, dashboard menggunakan database online Supabase.</p><div class="cloud-status" id="cloudStatus"><span class="status-dot"></span><span>Mode lokal</span></div><div class="setting-actions"><button class="ghost-btn" id="backupBtn">Backup Data</button><label class="ghost-btn file-btn">Import Data<input type="file" id="importInput" accept=".json"></label></div><p class="muted small-note">Setelah Supabase dikonfigurasi di <code>app.js</code>, semua perangkat yang membuka website yang sama akan membaca database yang sama.</p></div>
           <div class="panel"><h3>Tentang</h3><p class="muted">Dashboard ini mengikuti struktur laporan: Produk, tanggal, total terjual, penghasilan/omzet, total modal, dan keuntungan.</p><div class="about-chip">Gabin Sales Dashboard • GitHub Ready</div></div>
         </div>
       </section>

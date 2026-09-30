@@ -73,7 +73,7 @@ function renderProducts(){
 }
 function renderInputs(date=todayISO(), values={}){
   $("#saleDate").value=date;
-  $("#productInputs").innerHTML=products.map(p=>`<div class="product-input"><div><label>${p.name}</label><small>${money(p.price)} jual • ${money(p.cost)} modal</small></div><input class="qty" type="number" min="0" step="1" value="${values[p.id]||0}" data-qty="${p.id}"></div>`).join("");
+  $("#productInputs").innerHTML=products.map(p=>`<div class="product-input"><div><label>${p.name}</label><small>${money(p.price)} jual • ${money(p.cost)} modal</small></div><div class="qty-control"><button type="button" class="qty-btn minus" data-minus="${p.id}">−</button><input class="qty" type="number" min="0" step="1" value="${values[p.id]||0}" data-qty="${p.id}"><button type="button" class="qty-btn plus" data-plus="${p.id}">+</button></div></div>`).join("");
   updateFormSummary();
 }
 function updateFormSummary(){
@@ -92,7 +92,17 @@ function downloadJSON(){
   const blob=new Blob([JSON.stringify({products,records},null,2)],{type:"application/json"});
   const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="backup-gabin-dashboard.json";a.click();URL.revokeObjectURL(a.href);
 }
+const SUPABASE_URL = "PASTE_SUPABASE_URL_HERE";
+const SUPABASE_ANON_KEY = "PASTE_SUPABASE_ANON_KEY_HERE";
+let cloud = null;
+const CLOUD_ENABLED = !SUPABASE_URL.includes("PASTE_") && !SUPABASE_ANON_KEY.includes("PASTE_");
+function initCloud(){const el=$("#cloudStatus");if(!CLOUD_ENABLED||!window.supabase){if(el)el.innerHTML='<span class="status-dot"></span><span>Mode lokal — cloud belum dikonfigurasi</span>';return}cloud=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);if(el)el.innerHTML='<span class="status-dot online"></span><span>Cloud aktif — sinkron otomatis</span>'}
+async function cloudLoad(){if(!cloud)return;try{const {data,error}=await cloud.from("gabin_daily_sales").select("*").order("date",{ascending:true});if(error)throw error;if(data&&data.length){records=data.map(x=>({date:x.date,sales:x.sales||{}}));save()}}catch(e){console.warn("Cloud load:",e)}}
+async function cloudSaveRecord(record){if(!cloud)return;try{const {error}=await cloud.from("gabin_daily_sales").upsert({date:record.date,sales:record.sales,updated_at:new Date().toISOString()},{onConflict:"date"});if(error)throw error}catch(e){console.warn("Cloud save:",e);toast("Tersimpan lokal; cloud belum tersedia")}}
+async function cloudDeleteRecord(date){if(!cloud)return;try{await cloud.from("gabin_daily_sales").delete().eq("date",date)}catch(e){console.warn(e)}}
+
 function init(){
+  initCloud();
   $("#todayLabel").textContent=new Date().toLocaleDateString("id-ID",{weekday:"short",day:"2-digit",month:"short",year:"numeric"});
   $("#dashboardDate").value=todayISO();$("#saleDate").value=todayISO();
   $$(".nav-item").forEach(n=>n.addEventListener("click",()=>go(n.dataset.section)));
@@ -100,17 +110,19 @@ function init(){
   $("#mobileMenu").onclick=()=>$("#sidebar").classList.toggle("open");
   $$(".period").forEach(b=>b.onclick=()=>{$$(".period").forEach(x=>x.classList.remove("active"));b.classList.add("active");currentPeriod=b.dataset.period;renderStats()});
   $("#dashboardDate").onchange=renderStats;
-  $("#salesForm").onsubmit=e=>{e.preventDefault();const date=$("#saleDate").value,sales={};$$("[data-qty]").forEach(i=>sales[i.dataset.qty]=Number(i.value)||0);const idx=records.findIndex(r=>r.date===date);if(idx>=0)records[idx].sales=sales;else records.push({date,sales});save();toast("Penjualan berhasil disimpan");renderStats();renderDailyTable();renderProductBars();renderChart();go("dashboard")};
+  $("#salesForm").onsubmit=e=>{e.preventDefault();const date=$("#saleDate").value,sales={};$$("[data-qty]").forEach(i=>sales[i.dataset.qty]=Number(i.value)||0);const idx=records.findIndex(r=>r.date===date);if(idx>=0)records[idx].sales=sales;else records.push({date,sales});save();cloudSaveRecord({date,sales});toast("Penjualan berhasil disimpan");renderStats();renderDailyTable();renderProductBars();renderChart();go("dashboard")};
   $("#productInputs").addEventListener("input",updateFormSummary);
+  $("#productInputs").addEventListener("click",e=>{const id=e.target.dataset.plus||e.target.dataset.minus;if(!id)return;const input=$(`[data-qty="${id}"]`);let n=Math.max(0,Number(input.value)||0);if(e.target.dataset.plus!==undefined)n++;else n=Math.max(0,n-1);input.value=n;updateFormSummary()});
   $("#historySearch").oninput=renderHistory;
-  $("#historyTable").addEventListener("click",e=>{const d=e.target.dataset.date;if(!d)return;if(e.target.classList.contains("delete-record")){if(confirm(`Hapus data ${fmtDate(d)}?`)){records=records.filter(r=>r.date!==d);save();renderHistory();renderStats();renderDailyTable();renderChart();toast("Data dihapus")}}else if(e.target.classList.contains("edit-record")){const r=records.find(x=>x.date===d);renderInputs(d,r?.sales||{});go("sales")}});
+  $("#historyTable").addEventListener("click",e=>{const d=e.target.dataset.date;if(!d)return;if(e.target.classList.contains("delete-record")){if(confirm(`Hapus data ${fmtDate(d)}?`)){records=records.filter(r=>r.date!==d);save();cloudDeleteRecord(d);renderHistory();renderStats();renderDailyTable();renderChart();toast("Data dihapus")}}else if(e.target.classList.contains("edit-record")){const r=records.find(x=>x.date===d);renderInputs(d,r?.sales||{});go("sales")}});
   $("#productsGrid").addEventListener("click",e=>{const id=e.target.dataset.saveProduct;if(!id)return;const p=products.find(x=>x.id===id);const card=e.target.closest(".product-card");p.price=Number(card.querySelector('[data-field="price"]').value)||0;p.cost=Number(card.querySelector('[data-field="cost"]').value)||0;save();renderInputs($("#saleDate").value);renderProducts();renderStats();renderChart();toast(`Harga ${p.name} diperbarui`)});
   $("#exportBtn").onclick=downloadJSON;$("#backupBtn").onclick=downloadJSON;
-  $("#clearBtn").onclick=()=>{if(confirm("Hapus seluruh riwayat penjualan? Data tidak bisa dikembalikan kecuali dari backup.")){records=[];save();renderHistory();renderStats();renderDailyTable();renderChart();toast("Semua data dihapus")}};
+  $("#clearBtn").onclick=async()=>{if(confirm("Hapus seluruh riwayat penjualan? Data tidak bisa dikembalikan kecuali dari backup.")){const oldDates=records.map(r=>r.date);records=[];save();if(cloud){for(const d of oldDates)await cloudDeleteRecord(d)}renderHistory();renderStats();renderDailyTable();renderChart();toast("Semua data dihapus")}};
   $("#importInput").onchange=e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{try{const d=JSON.parse(rd.result);if(!d.products||!d.records)throw Error();products=d.products;records=d.records;save();renderAll();toast("Backup berhasil diimpor")}catch{toast("File backup tidak valid")}};rd.readAsText(f)};
   $("#themeToggle").onclick=()=>{document.body.classList.toggle("light");localStorage.setItem("gabin_theme",document.body.classList.contains("light")?"light":"dark")};
   if(localStorage.getItem("gabin_theme")==="light")document.body.classList.add("light");
   renderAll();
+  cloudLoad().then(()=>renderAll());
 }
 function renderAll(){renderStats();renderProductBars();renderDailyTable();renderChart();renderHistory();renderProducts();renderInputs();}
 init();
