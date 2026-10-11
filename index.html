@@ -152,14 +152,15 @@
       </section>
 
       <section class="section" id="section-products">
-        <div class="section-heading"><div><span class="hero-kicker">KATALOG</span><h2>Produk & Harga</h2><p>Atur harga jual dan modal per pcs.</p></div></div>
+        <div class="section-heading"><div><span class="hero-kicker">KATALOG & INVENTARIS</span><h2>Produk & Stok</h2><p>Atur harga, modal, dan stok tersedia. Perubahan stok tersinkron ke cloud.</p></div></div>
         <div class="products-grid" id="productsGrid"></div>
+        <article class="panel stock-message-panel"><div class="panel-head"><div><h3>Pesan Update Stok WhatsApp</h3><p>Pesan otomatis disusun dari stok terbaru.</p></div><span class="badge">Siap disalin</span></div><textarea id="stockMessage" rows="12" readonly></textarea><div class="setting-actions"><button class="primary-btn" id="copyStockMessage">Salin Pesan</button><button class="ghost-btn" id="openWhatsAppChannel">Buka Saluran WhatsApp</button></div><p class="muted small-note">Catatan: WhatsApp Channels tidak menyediakan API publik untuk memposting otomatis dari website. Setelah stok berubah dan tersinkron, salin pesan ini lalu tempel/posting di saluran secara manual.</p></article>
       </section>
 
       <section class="section" id="section-settings">
         <div class="section-heading"><div><span class="hero-kicker">PENGATURAN</span><h2>Pengaturan Dashboard</h2><p>Kelola data lokal dan tampilan aplikasi.</p></div></div>
         <div class="settings-grid">
-          <div class="panel"><h3>Sinkronisasi Cloud</h3><p class="muted">Agar data yang dimasukkan dari HP otomatis muncul di laptop dan perangkat lain, dashboard menggunakan database online Supabase.</p><div class="cloud-status" id="cloudStatus"><span class="status-dot"></span><span>Mode lokal</span></div><div class="setting-actions"><button class="ghost-btn" id="backupBtn">Backup Data</button><label class="ghost-btn file-btn">Import Data<input type="file" id="importInput" accept=".json"></label></div><p class="muted small-note">Setelah Supabase dikonfigurasi di <code>app.js</code>, semua perangkat yang membuka website yang sama akan membaca database yang sama.</p></div>
+          <div class="panel"><h3>Sinkronisasi Cloud</h3><p class="muted">Agar data yang dimasukkan dari HP otomatis muncul di laptop dan perangkat lain, dashboard menggunakan database online Supabase.</p><div class="cloud-status" id="cloudStatus"><span class="status-dot"></span><span>Mode lokal</span></div><div class="setting-actions"><button class="ghost-btn" id="backupBtn">Backup Data</button><label class="ghost-btn file-btn">Import Data<input type="file" id="importInput" accept=".json"></label></div><p class="muted small-note">Data penjualan memakai tabel <code>gabin_daily_sales</code> dan inventaris memakai <code>gabin_inventory</code>.</p></div>
           <div class="panel"><h3>Tentang</h3><p class="muted">Dashboard ini mengikuti struktur laporan: Produk, tanggal, total terjual, penghasilan/omzet, total modal, dan keuntungan.</p><div class="about-chip">Gabin Sales Dashboard • GitHub Ready</div></div>
         </div>
       </section>

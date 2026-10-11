@@ -1,38 +1,34 @@
-# Gabin Sales Dashboard — GitHub Pages + Cloud Sync
+# Gabin Dashboard — Cloud Sync + Stok + WhatsApp Message
 
-Dashboard penjualan gabin dengan input `− / jumlah / +`, grafik, riwayat, dan sinkronisasi antar-perangkat.
+## Fitur tambahan
+- Varian Durian dan Blueberry.
+- Manajemen stok per varian. Stok awal: Oreo 20, Matcha 11, Stroberi 11, Mangga 25, Milo 9, Coklat 30. Vanila, Durian, Blueberry dimulai dari 0 karena stok awalnya belum diberikan.
+- Data penjualan dari backup sampai 11 Oktober 2026 dipertahankan. Saat cloud dimuat, riwayat lokal digabung dengan cloud; data lokal yang belum ada di cloud akan diunggah.
+- Pesan update stok disusun otomatis dan bisa disalin.
 
-## Supabase
-GitHub Pages adalah hosting statis, jadi untuk sinkronisasi antar-perangkat diperlukan database cloud. Versi ini sudah disiapkan untuk Supabase.
-
-Di Supabase → SQL Editor jalankan:
+## SQL Supabase
+Di Supabase SQL Editor jalankan ini sekali. Tabel `gabin_daily_sales` tetap diperlukan seperti setup sebelumnya.
 
 ```sql
-create table if not exists public.gabin_daily_sales (
-  date date primary key,
-  sales jsonb not null default '{}'::jsonb,
+create table if not exists public.gabin_inventory (
+  id text primary key,
+  name text not null,
+  stock integer not null default 0 check (stock >= 0),
+  price integer not null default 10000,
+  cost integer not null default 7000,
   updated_at timestamptz not null default now()
 );
-alter table public.gabin_daily_sales enable row level security;
-create policy "public read gabin sales" on public.gabin_daily_sales for select to anon using (true);
-create policy "public insert gabin sales" on public.gabin_daily_sales for insert to anon with check (true);
-create policy "public update gabin sales" on public.gabin_daily_sales for update to anon using (true) with check (true);
-create policy "public delete gabin sales" on public.gabin_daily_sales for delete to anon using (true);
+alter table public.gabin_inventory enable row level security;
+create policy "public read gabin inventory" on public.gabin_inventory for select to anon using (true);
+create policy "public insert gabin inventory" on public.gabin_inventory for insert to anon with check (true);
+create policy "public update gabin inventory" on public.gabin_inventory for update to anon using (true) with check (true);
+create policy "public delete gabin inventory" on public.gabin_inventory for delete to anon using (true);
 ```
 
-Lalu buka Project Settings → API dan masukkan Project URL + anon/publishable key ke `app.js`:
+Pastikan tabel `gabin_daily_sales` dan policy SELECT/INSERT/UPDATE/DELETE dari setup sebelumnya juga sudah ada. Upload `index.html`, `style.css`, `app.js` ke GitHub lalu refresh website.
 
-```js
-const SUPABASE_URL = "URL_PROJECT_KAMU";
-const SUPABASE_ANON_KEY = "ANON_KEY_KAMU";
-```
+## WhatsApp Channel
+Website tidak bisa memposting langsung ke WhatsApp Channel karena WhatsApp tidak menyediakan API publik untuk menerbitkan posting channel dari website. Setelah stok disimpan, bagian Produk & Stok memperbarui teks pesan secara otomatis. Klik **Salin Pesan**, buka channel, lalu posting manual.
 
-Jangan masukkan `service_role` key ke website.
-
-Setelah aktif, input dari HP/laptop akan memakai database yang sama. Tombol produk menggunakan `− 0 +`.
-
-Catatan keamanan: policy anonim di atas cocok untuk dashboard pribadi sederhana. Untuk penggunaan publik/serius, gunakan Supabase Auth dan RLS berbasis user.
-
-
-## Konfigurasi
-Project URL dan publishable key Supabase sudah dimasukkan ke `app.js`. Jangan masukkan `service_role` key ke website.
+## Catatan sinkronisasi
+Website menggunakan Supabase untuk menyimpan transaksi dan stok. Key yang ada di `app.js` adalah public/publishable key; jangan pernah masukkan service-role key ke website publik. RLS harus dikonfigurasi dengan benar.

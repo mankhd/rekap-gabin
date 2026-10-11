@@ -1,0 +1,216 @@
+{
+  "products": [
+    {
+      "id": "coklat",
+      "name": "Coklat",
+      "price": 10000,
+      "cost": 7000
+    },
+    {
+      "id": "stroberi",
+      "name": "Stroberi",
+      "price": 10000,
+      "cost": 7000
+    },
+    {
+      "id": "vanila",
+      "name": "Vanila",
+      "price": 10000,
+      "cost": 7000
+    },
+    {
+      "id": "matcha",
+      "name": "Matcha",
+      "price": 10000,
+      "cost": 7000
+    },
+    {
+      "id": "oreo",
+      "name": "Oreo",
+      "price": 10000,
+      "cost": 7000
+    },
+    {
+      "id": "mangga",
+      "name": "Mangga",
+      "price": 10000,
+      "cost": 7000
+    },
+    {
+      "id": "milo",
+      "name": "Milo",
+      "price": 10000,
+      "cost": 7000
+    }
+  ],
+  "records": [
+    {
+      "date": "2026-09-26",
+      "sales": {
+        "milo": 0,
+        "oreo": 1,
+        "coklat": 1,
+        "mangga": 0,
+        "matcha": 1,
+        "vanila": 1,
+        "stroberi": 1
+      }
+    },
+    {
+      "date": "2026-09-27",
+      "sales": {
+        "milo": 0,
+        "oreo": 2,
+        "coklat": 2,
+        "mangga": 0,
+        "matcha": 1,
+        "vanila": 0,
+        "stroberi": 2
+      }
+    },
+    {
+      "date": "2026-09-28",
+      "sales": {
+        "milo": 1,
+        "oreo": 2,
+        "coklat": 1,
+        "mangga": 0,
+        "matcha": 1,
+        "vanila": 0,
+        "stroberi": 0
+      }
+    },
+    {
+      "date": "2026-09-29",
+      "sales": {
+        "milo": 3,
+        "oreo": 4,
+        "coklat": 2,
+        "mangga": 1,
+        "matcha": 2,
+        "vanila": 2,
+        "stroberi": 4
+      }
+    },
+    {
+      "date": "2026-09-30",
+      "sales": {
+        "milo": 0,
+        "oreo": 4,
+        "coklat": 4,
+        "mangga": 0,
+        "matcha": 0,
+        "vanila": 1,
+        "stroberi": 3
+      }
+    },
+    {
+      "date": "2026-10-01",
+      "sales": {
+        "milo": 1,
+        "oreo": 2,
+        "coklat": 2,
+        "mangga": 1,
+        "matcha": 1,
+        "vanila": 2,
+        "stroberi": 1
+      }
+    },
+    {
+      "date": "2026-10-02",
+      "sales": {
+        "milo": 0,
+        "oreo": 1,
+        "coklat": 1,
+        "mangga": 0,
+        "matcha": 1,
+        "vanila": 1,
+        "stroberi": 1
+      }
+    },
+    {
+      "date": "2026-10-04",
+      "sales": {
+        "milo": 1,
+        "oreo": 1,
+        "coklat": 1,
+        "mangga": 0,
+        "matcha": 1,
+        "vanila": 1,
+        "stroberi": 1
+      }
+    },
+    {
+      "date": "2026-10-05",
+      "sales": {
+        "milo": 0,
+        "oreo": 0,
+        "coklat": 1,
+        "mangga": 0,
+        "matcha": 1,
+        "vanila": 0,
+        "stroberi": 1
+      }
+    },
+    {
+      "date": "2026-10-06",
+      "sales": {
+        "milo": 1,
+        "oreo": 4,
+        "coklat": 4,
+        "mangga": 0,
+        "matcha": 1,
+        "vanila": 2,
+        "stroberi": 0
+      }
+    },
+    {
+      "date": "2026-10-07",
+      "sales": {
+        "milo": 0,
+        "oreo": 1,
+        "coklat": 1,
+        "mangga": 0,
+        "matcha": 1,
+        "vanila": 1,
+        "stroberi": 1
+      }
+    },
+    {
+      "date": "2026-10-08",
+      "sales": {
+        "milo": 1,
+        "oreo": 0,
+        "coklat": 0,
+        "mangga": 1,
+        "matcha": 0,
+        "vanila": 1,
+        "stroberi": 2
+      }
+    },
+    {
+      "date": "2026-10-10",
+      "sales": {
+        "milo": 0,
+        "oreo": 1,
+        "coklat": 1,
+        "mangga": 1,
+        "matcha": 1,
+        "vanila": 0,
+        "stroberi": 1
+      }
+    },
+    {
+      "date": "2026-10-11",
+      "sales": {
+        "milo": 1,
+        "oreo": 2,
+        "coklat": 2,
+        "mangga": 0,
+        "matcha": 2,
+        "vanila": 0,
+        "stroberi": 3
+      }
+    }
+  ]
+}
