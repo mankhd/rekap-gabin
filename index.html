@@ -25,6 +25,7 @@
       <nav>
         <button class="nav-item active" data-section="dashboard"><span>⌂</span> Dashboard</button>
         <button class="nav-item" data-section="sales"><span>＋</span> Input Penjualan</button>
+        <button class="nav-item" data-section="online"><span>▣</span> Penjualan Online</button>
         <button class="nav-item" data-section="history"><span>▤</span> Riwayat</button>
         <button class="nav-item" data-section="products"><span>◈</span> Produk</button>
         <button class="nav-item" data-section="settings"><span>⚙</span> Pengaturan</button>
@@ -140,6 +141,24 @@
             <div class="tip"><b>03</b><span>Omzet, modal, dan keuntungan dihitung otomatis dari harga produk.</span></div>
             <div class="tip"><b>04</b><span>Data dapat diedit kembali melalui menu Riwayat.</span></div>
           </aside>
+        </div>
+      </section>
+
+      <section class="section" id="section-online">
+        <div class="section-heading"><div><span class="hero-kicker">PENJUALAN KHUSUS ONLINE</span><h2>Catat Order Online</h2><p>Catat jumlah semua rasa untuk GoFood, GrabFood, atau ShopeeFood beserta uang yang diterima.</p></div></div>
+        <div class="form-layout">
+          <form class="panel sales-form" id="onlineForm">
+            <div class="form-top"><h3>Detail Pesanan</h3><input type="date" id="onlineDate" required></div>
+            <label class="field-label" for="onlinePlatform">Platform</label>
+            <select id="onlinePlatform" class="field-select" required><option>GoFood</option><option>GrabFood</option><option>ShopeeFood</option></select>
+            <div class="online-items-title"><b>Jumlah per rasa</b><span>Gunakan tombol + / −</span></div>
+            <div class="product-inputs" id="onlineProductInputs"></div>
+            <label class="field-label" for="onlineReceived">Uang diterima (Rp)</label><input id="onlineReceived" class="money-input" type="number" min="0" step="1" placeholder="Contoh: 65000" required>
+            <label class="field-label" for="onlineNote">Catatan pesanan (opsional)</label><input id="onlineNote" class="money-input" type="text" maxlength="120" placeholder="Contoh: order GrabFood sore">
+            <div class="form-summary online-summary"><div><span>Total produk</span><b id="onlineSold">0 pcs</b></div><div><span>Nilai produk</span><b id="onlineValue">Rp0</b></div><div><span>Uang diterima</span><b id="onlineReceivedPreview">Rp0</b></div><div class="summary-profit"><span>Estimasi modal</span><b id="onlineCost">Rp0</b></div></div>
+            <button class="primary-btn wide" type="submit">Simpan Pesanan Online</button>
+          </form>
+          <aside class="panel tips"><h3>Riwayat Order Online</h3><p class="muted">Setiap order tersimpan berdasarkan tanggal dan ikut masuk ke data cloud Supabase. Masukkan nominal uang yang benar-benar diterima.</p><div id="onlineOrderList" class="online-order-list"></div></aside>
         </div>
       </section>
 

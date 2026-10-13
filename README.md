@@ -32,3 +32,10 @@ Website tidak bisa memposting langsung ke WhatsApp Channel karena WhatsApp tidak
 
 ## Catatan sinkronisasi
 Website menggunakan Supabase untuk menyimpan transaksi dan stok. Key yang ada di `app.js` adalah public/publishable key; jangan pernah masukkan service-role key ke website publik. RLS harus dikonfigurasi dengan benar.
+
+
+## Penjualan khusus online
+Menu Penjualan Online mencatat platform GoFood, GrabFood, atau ShopeeFood, jumlah setiap rasa menggunakan tombol +/−, uang diterima (nominal), dan catatan opsional. Order disimpan pada kolom JSONB `sales` dalam tabel `gabin_daily_sales` di bawah properti `__onlineOrders`, sehingga memakai sinkronisasi Supabase yang sama. Pastikan kolom `sales` bertipe `jsonb`.
+
+## Memasukkan riwayat penjualan terbaru
+File `backup-gabin-dashboard-2026-10-13.json` berisi backup yang dikirim untuk riwayat sampai 13 Oktober 2026 beserta produk dan stoknya. Setelah upload versi website ini, buka **Pengaturan → Import Data**, pilih file JSON tersebut. Import akan menyimpan data di browser dan mengirim catatan serta produk ke Supabase jika cloud sudah dikonfigurasi. Lakukan satu kali saja, dan pastikan project Supabase yang digunakan adalah project yang sama dengan website.

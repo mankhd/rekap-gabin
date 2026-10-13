@@ -250,6 +250,7 @@ function save(){localStorage.setItem("gabin_products",JSON.stringify(products));
 function calc(r){
   let sold=0,revenue=0,cost=0;
   products.forEach(p=>{const q=Number(r.sales?.[p.id]||0);sold+=q;revenue+=q*p.price;cost+=q*p.cost});
+  getOnlineOrders(r).forEach(o=>products.forEach(p=>{const q=Number(o.quantities?.[p.id]||0);sold+=q;revenue+=q*p.price;cost+=q*p.cost;}));
   return {sold,revenue,cost,profit:revenue-cost};
 }
 function filteredRecords(){
@@ -325,7 +326,7 @@ function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show"
 function go(section){
   $$(".section").forEach(s=>s.classList.remove("active"));$(`#section-${section}`).classList.add("active");
   $$(".nav-item").forEach(n=>n.classList.toggle("active",n.dataset.section===section));
-  $("#pageTitle").textContent={dashboard:"Dashboard",sales:"Input Penjualan",history:"Riwayat Penjualan",products:"Produk & Harga",settings:"Pengaturan"}[section];
+  $("#pageTitle").textContent={dashboard:"Dashboard",sales:"Input Penjualan",online:"Penjualan Online",history:"Riwayat Penjualan",products:"Produk & Harga",settings:"Pengaturan"}[section];
   $("#sidebar").classList.remove("open");
   if(section==="dashboard"){renderStats();renderProductBars();renderDailyTable();renderChart()}
 }
@@ -373,7 +374,14 @@ function init(){
   $("#mobileMenu").onclick=()=>$("#sidebar").classList.toggle("open");
   $$(".period").forEach(b=>b.onclick=()=>{$$(".period").forEach(x=>x.classList.remove("active"));b.classList.add("active");currentPeriod=b.dataset.period;renderStats()});
   $("#dashboardDate").onchange=renderStats;
-  $("#salesForm").onsubmit=e=>{e.preventDefault();const date=$("#saleDate").value,sales={};$$("[data-qty]").forEach(i=>sales[i.dataset.qty]=Number(i.value)||0);const idx=records.findIndex(r=>r.date===date);if(idx>=0)records[idx].sales=sales;else records.push({date,sales});save();cloudSaveRecord({date,sales});toast("Penjualan berhasil disimpan");renderStats();renderDailyTable();renderProductBars();renderChart();go("dashboard")};
+  $("#salesForm").onsubmit=e=>{e.preventDefault();const date=$("#saleDate").value,sales={};$$("[data-qty]").forEach(i=>sales[i.dataset.qty]=Number(i.value)||0);const idx=records.findIndex(r=>r.date===date);if(idx>=0){const online=Array.isArray(records[idx].sales?.__onlineOrders)?records[idx].sales.__onlineOrders:[];records[idx].sales={...sales,__onlineOrders:online};}else records.push({date,sales});save();cloudSaveRecord(records.find(r=>r.date===date));toast("Penjualan berhasil disimpan");renderStats();renderDailyTable();renderProductBars();renderChart();go("dashboard")};
+  if(document.querySelector('#onlineDate'))document.querySelector('#onlineDate').value=todayISO();
+  renderOnlineInputs();
+  document.querySelector('#onlineProductInputs').addEventListener('input',updateOnlineSummary);
+  document.querySelector('#onlineProductInputs').addEventListener('click',e=>{const id=e.target.dataset.onlinePlus||e.target.dataset.onlineMinus;if(!id)return;const input=document.querySelector(`[data-online-qty="${id}"]`);let n=Math.max(0,Number(input.value)||0);n=e.target.dataset.onlinePlus!==undefined?n+1:Math.max(0,n-1);input.value=n;updateOnlineSummary();});
+  document.querySelector('#onlineReceived').addEventListener('input',updateOnlineSummary);
+  document.querySelector('#onlineForm').addEventListener('submit',async e=>{e.preventDefault();const date=document.querySelector('#onlineDate').value,quantities=onlineDraft();if(!products.some(p=>(quantities[p.id]||0)>0)){toast('Masukkan jumlah produk terlebih dahulu');return;}const received=Number(document.querySelector('#onlineReceived').value);if(!Number.isFinite(received)||received<0){toast('Nominal uang diterima tidak valid');return;}let rec=records.find(r=>r.date===date);if(!rec){rec={date,sales:{}};records.push(rec);}rec.sales=rec.sales||{};rec.sales.__onlineOrders=Array.isArray(rec.sales.__onlineOrders)?rec.sales.__onlineOrders:[];rec.sales.__onlineOrders.push({id:String(Date.now()),platform:document.querySelector('#onlinePlatform').value,quantities,received,note:document.querySelector('#onlineNote').value.trim(),createdAt:new Date().toISOString()});save();await cloudSaveRecord(rec);document.querySelector('#onlineReceived').value='';document.querySelector('#onlineNote').value='';renderOnlineInputs();renderOnlineOrderList();renderStats();renderDailyTable();renderProductBars();renderChart();toast('Pesanan online disimpan');});
+
   $("#productInputs").addEventListener("input",updateFormSummary);
   $("#productInputs").addEventListener("click",e=>{const id=e.target.dataset.plus||e.target.dataset.minus;if(!id)return;const input=$(`[data-qty="${id}"]`);let n=Math.max(0,Number(input.value)||0);if(e.target.dataset.plus!==undefined)n++;else n=Math.max(0,n-1);input.value=n;updateFormSummary()});
   $("#historySearch").oninput=renderHistory;
@@ -390,5 +398,13 @@ function init(){
   cloudLoad().then(()=>renderAll());
   if(cloud) setInterval(()=>cloudLoad(),30000);
 }
-function renderAll(){renderStats();renderProductBars();renderDailyTable();renderChart();renderHistory();renderProducts();renderInputs();}
+
+function getOnlineOrders(record){return Array.isArray(record?.sales?.__onlineOrders)?record.sales.__onlineOrders:[];}
+function escapeHTML(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function onlineDraft(){const q={};document.querySelectorAll('#onlineProductInputs [data-online-qty]').forEach(i=>q[i.dataset.onlineQty]=Math.max(0,Number(i.value)||0));return q;}
+function updateOnlineSummary(){const q=onlineDraft();let sold=0,value=0,cost=0;products.forEach(p=>{let n=q[p.id]||0;sold+=n;value+=n*p.price;cost+=n*p.cost;});document.querySelector('#onlineSold').textContent=sold+' pcs';document.querySelector('#onlineValue').textContent=money(value);document.querySelector('#onlineReceivedPreview').textContent=money(Number(document.querySelector('#onlineReceived').value)||0);document.querySelector('#onlineCost').textContent=money(cost);}
+function renderOnlineInputs(){if(!document.querySelector('#onlineProductInputs'))return;document.querySelector('#onlineProductInputs').innerHTML=products.map(p=>`<div class="product-input"><div><label>${p.name}</label><small>${money(p.price)} jual • ${money(p.cost)} modal</small></div><div class="qty-control"><button type="button" class="qty-btn" data-online-minus="${p.id}">−</button><input class="qty" type="number" min="0" step="1" value="0" data-online-qty="${p.id}"><button type="button" class="qty-btn" data-online-plus="${p.id}">+</button></div></div>`).join('');updateOnlineSummary();}
+function renderOnlineOrderList(){const root=document.querySelector('#onlineOrderList');if(!root)return;const list=[];[...records].sort((a,b)=>b.date.localeCompare(a.date)).forEach(r=>getOnlineOrders(r).forEach(o=>list.push({...o,date:r.date})));root.innerHTML=list.slice(0,12).map(o=>{const count=products.reduce((s,p)=>s+(Number(o.quantities?.[p.id])||0),0);const detail=products.filter(p=>(Number(o.quantities?.[p.id])||0)>0).map(p=>`${p.name} ${o.quantities[p.id]}`).join(' • ')||'Tidak ada item';return `<div class="online-order-card"><strong>${escapeHTML(o.platform)} · ${fmtDate(o.date)}</strong><small>${detail}<br>${count} pcs${o.note?' · '+escapeHTML(o.note):''}</small><div class="order-money">Diterima: ${money(o.received)}</div></div>`;}).join('')||'<p class="muted">Belum ada order online yang dicatat.</p>'; }
+
+function renderAll(){renderStats();renderProductBars();renderDailyTable();renderChart();renderHistory();renderProducts();renderInputs();renderOnlineInputs();renderOnlineOrderList();}
 init();
