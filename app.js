@@ -4,14 +4,14 @@ const DEFAULT_PRODUCTS = [
     "name": "Coklat",
     "price": 10000,
     "cost": 7000,
-    "stock": 30
+    "stock": 16
   },
   {
     "id": "stroberi",
     "name": "Stroberi",
     "price": 10000,
     "cost": 7000,
-    "stock": 11
+    "stock": 0
   },
   {
     "id": "vanila",
@@ -25,35 +25,35 @@ const DEFAULT_PRODUCTS = [
     "name": "Matcha",
     "price": 10000,
     "cost": 7000,
-    "stock": 11
+    "stock": 2
   },
   {
     "id": "oreo",
     "name": "Oreo",
     "price": 10000,
     "cost": 7000,
-    "stock": 20
+    "stock": 9
   },
   {
     "id": "mangga",
     "name": "Mangga",
     "price": 10000,
     "cost": 7000,
-    "stock": 25
+    "stock": 21
   },
   {
     "id": "milo",
     "name": "Milo",
     "price": 10000,
     "cost": 7000,
-    "stock": 9
+    "stock": 0
   },
   {
     "id": "durian",
     "name": "Durian",
     "price": 10000,
     "cost": 7000,
-    "stock": 0
+    "stock": 23
   },
   {
     "id": "blueberry",
@@ -247,6 +247,15 @@ const money = n => "Rp" + Math.round(n||0).toLocaleString("id-ID");
 const fmtDate = s => new Date(s+"T00:00:00").toLocaleDateString("id-ID",{day:"2-digit",month:"short",year:"numeric"});
 const todayISO = () => { const d=new Date(); const z=n=>String(n).padStart(2,"0"); return `${d.getFullYear()}-${z(d.getMonth()+1)}-${z(d.getDate())}`; };
 function save(){localStorage.setItem("gabin_products",JSON.stringify(products));localStorage.setItem("gabin_records",JSON.stringify(records));}
+function adjustStock(quantities, multiplier=-1){
+  products.forEach(p=>{const q=Math.max(0,Number(quantities?.[p.id])||0);if(q){p.stock=Math.max(0,(Number(p.stock)||0)+(multiplier*q));}});
+  save(); products.forEach(p=>cloudSaveProduct(p)); renderProducts();
+}
+function regularSalesFor(record){const result={};products.forEach(p=>result[p.id]=Math.max(0,Number(record?.sales?.[p.id])||0));return result;}
+function adjustStockDelta(oldQty,newQty){
+  products.forEach(p=>{const delta=(Number(newQty?.[p.id])||0)-(Number(oldQty?.[p.id])||0);if(delta){p.stock=Math.max(0,(Number(p.stock)||0)-delta);}});
+  save();products.forEach(p=>cloudSaveProduct(p));renderProducts();
+}
 function calc(r){
   let sold=0,revenue=0,cost=0;
   products.forEach(p=>{const q=Number(r.sales?.[p.id]||0);sold+=q;revenue+=q*p.price;cost+=q*p.cost});
@@ -356,7 +365,7 @@ async function cloudLoad(){
     if(invRows&&invRows.length){
       products=products.map(p=>{const r=invRows.find(x=>x.id===p.id);return r?{...p,stock:Number(r.stock)||0,price:Number(r.price??p.price),cost:Number(r.cost??p.cost)}:p});
     } else { for(const p of products) await cloudSaveProduct(p); }
-    save(); renderAll();
+    save(); renderStats(); renderProductBars(); renderDailyTable(); renderChart(); renderHistory(); renderOnlineOrderList(); renderProducts();
     const el=$("#cloudStatus"); if(el)el.innerHTML='<span class="status-dot online"></span><span>Cloud terhubung • data tersinkron</span>';
   }catch(e){console.warn("Cloud load:",e);const el=$("#cloudStatus");if(el)el.innerHTML='<span class="status-dot"></span><span>Cloud gagal: cek tabel dan RLS</span>';}
 }
@@ -374,14 +383,30 @@ function init(){
   $("#mobileMenu").onclick=()=>$("#sidebar").classList.toggle("open");
   $$(".period").forEach(b=>b.onclick=()=>{$$(".period").forEach(x=>x.classList.remove("active"));b.classList.add("active");currentPeriod=b.dataset.period;renderStats()});
   $("#dashboardDate").onchange=renderStats;
-  $("#salesForm").onsubmit=e=>{e.preventDefault();const date=$("#saleDate").value,sales={};$$("[data-qty]").forEach(i=>sales[i.dataset.qty]=Number(i.value)||0);const idx=records.findIndex(r=>r.date===date);if(idx>=0){const online=Array.isArray(records[idx].sales?.__onlineOrders)?records[idx].sales.__onlineOrders:[];records[idx].sales={...sales,__onlineOrders:online};}else records.push({date,sales});save();cloudSaveRecord(records.find(r=>r.date===date));toast("Penjualan berhasil disimpan");renderStats();renderDailyTable();renderProductBars();renderChart();go("dashboard")};
+  $("#salesForm").onsubmit=e=>{e.preventDefault();const date=$("#saleDate").value,sales={};$$("[data-qty]").forEach(i=>sales[i.dataset.qty]=Number(i.value)||0);const idx=records.findIndex(r=>r.date===date);const oldQty=idx>=0?regularSalesFor(records[idx]):{};if(idx>=0){const online=Array.isArray(records[idx].sales?.__onlineOrders)?records[idx].sales.__onlineOrders:[];records[idx].sales={...sales,__onlineOrders:online};}else records.push({date,sales});adjustStockDelta(oldQty,sales);save();cloudSaveRecord(records.find(r=>r.date===date));toast("Penjualan berhasil disimpan");renderStats();renderDailyTable();renderProductBars();renderChart();go("dashboard")};
   if(document.querySelector('#onlineDate'))document.querySelector('#onlineDate').value=todayISO();
   renderOnlineInputs();
   document.querySelector('#onlineProductInputs').addEventListener('input',updateOnlineSummary);
   document.querySelector('#onlineProductInputs').addEventListener('click',e=>{const id=e.target.dataset.onlinePlus||e.target.dataset.onlineMinus;if(!id)return;const input=document.querySelector(`[data-online-qty="${id}"]`);let n=Math.max(0,Number(input.value)||0);n=e.target.dataset.onlinePlus!==undefined?n+1:Math.max(0,n-1);input.value=n;updateOnlineSummary();});
   document.querySelector('#onlineReceived').addEventListener('input',updateOnlineSummary);
-  document.querySelector('#onlineForm').addEventListener('submit',async e=>{e.preventDefault();const date=document.querySelector('#onlineDate').value,quantities=onlineDraft();if(!products.some(p=>(quantities[p.id]||0)>0)){toast('Masukkan jumlah produk terlebih dahulu');return;}const received=Number(document.querySelector('#onlineReceived').value);if(!Number.isFinite(received)||received<0){toast('Nominal uang diterima tidak valid');return;}let rec=records.find(r=>r.date===date);if(!rec){rec={date,sales:{}};records.push(rec);}rec.sales=rec.sales||{};rec.sales.__onlineOrders=Array.isArray(rec.sales.__onlineOrders)?rec.sales.__onlineOrders:[];rec.sales.__onlineOrders.push({id:String(Date.now()),platform:document.querySelector('#onlinePlatform').value,quantities,received,note:document.querySelector('#onlineNote').value.trim(),createdAt:new Date().toISOString()});save();await cloudSaveRecord(rec);document.querySelector('#onlineReceived').value='';document.querySelector('#onlineNote').value='';renderOnlineInputs();renderOnlineOrderList();renderStats();renderDailyTable();renderProductBars();renderChart();toast('Pesanan online disimpan');});
+  document.querySelector('#onlineForm').addEventListener('submit',async e=>{e.preventDefault();const date=document.querySelector('#onlineDate').value,quantities=onlineDraft();if(!products.some(p=>(quantities[p.id]||0)>0)){toast('Masukkan jumlah produk terlebih dahulu');return;}const received=Number(document.querySelector('#onlineReceived').value);if(!Number.isFinite(received)||received<0){toast('Nominal uang diterima tidak valid');return;}let rec=records.find(r=>r.date===date);if(!rec){rec={date,sales:{}};records.push(rec);}rec.sales=rec.sales||{};rec.sales.__onlineOrders=Array.isArray(rec.sales.__onlineOrders)?rec.sales.__onlineOrders:[];rec.sales.__onlineOrders.push({id:String(Date.now()),platform:document.querySelector('#onlinePlatform').value,quantities,received,note:document.querySelector('#onlineNote').value.trim(),createdAt:new Date().toISOString()});adjustStock(quantities,-1);save();await cloudSaveRecord(rec);document.querySelector('#onlineReceived').value='';document.querySelector('#onlineNote').value='';renderOnlineInputs();renderOnlineOrderList();renderStats();renderDailyTable();renderProductBars();renderChart();toast('Pesanan online disimpan');});
 
+  $("#onlineOrderList").addEventListener("click", async e=>{
+    const btn=e.target.closest(".delete-online-order"); if(!btn)return;
+    if(!confirm("Hapus riwayat pesanan online ini?"))return;
+    const rec=records.find(r=>r.date===btn.dataset.onlineDate); if(!rec)return;
+    const removed=(rec.sales.__onlineOrders||[]).find(o=>String(o.id)===String(btn.dataset.onlineId));
+    if(removed)adjustStock(removed.quantities,+1);
+    rec.sales.__onlineOrders=(rec.sales.__onlineOrders||[]).filter(o=>String(o.id)!==String(btn.dataset.onlineId));
+    save(); await cloudSaveRecord(rec); renderOnlineOrderList(); renderStats(); renderDailyTable(); renderProductBars(); renderChart(); toast("Riwayat online dihapus");
+  });
+  $("#clearOnlineHistory").addEventListener("click", async ()=>{
+    const count=records.reduce((n,r)=>n+(Array.isArray(r.sales?.__onlineOrders)?r.sales.__onlineOrders.length:0),0);
+    if(!count){toast("Riwayat online masih kosong");return;}
+    if(!confirm(`Hapus semua ${count} riwayat penjualan online? Penjualan reguler tetap aman.`))return;
+    for(const rec of records){if(Array.isArray(rec.sales?.__onlineOrders)&&rec.sales.__onlineOrders.length){rec.sales.__onlineOrders.forEach(o=>adjustStock(o.quantities,+1));rec.sales.__onlineOrders=[];await cloudSaveRecord(rec);}}
+    save();renderOnlineOrderList();renderStats();renderDailyTable();renderProductBars();renderChart();toast("Semua riwayat online dihapus");
+  });
   $("#productInputs").addEventListener("input",updateFormSummary);
   $("#productInputs").addEventListener("click",e=>{const id=e.target.dataset.plus||e.target.dataset.minus;if(!id)return;const input=$(`[data-qty="${id}"]`);let n=Math.max(0,Number(input.value)||0);if(e.target.dataset.plus!==undefined)n++;else n=Math.max(0,n-1);input.value=n;updateFormSummary()});
   $("#historySearch").oninput=renderHistory;
@@ -395,7 +420,7 @@ function init(){
   $("#themeToggle").onclick=()=>{document.body.classList.toggle("light");localStorage.setItem("gabin_theme",document.body.classList.contains("light")?"light":"dark")};
   if(localStorage.getItem("gabin_theme")==="light")document.body.classList.add("light");
   renderAll();
-  cloudLoad().then(()=>renderAll());
+  cloudLoad();
   if(cloud) setInterval(()=>cloudLoad(),30000);
 }
 
@@ -404,7 +429,7 @@ function escapeHTML(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;',
 function onlineDraft(){const q={};document.querySelectorAll('#onlineProductInputs [data-online-qty]').forEach(i=>q[i.dataset.onlineQty]=Math.max(0,Number(i.value)||0));return q;}
 function updateOnlineSummary(){const q=onlineDraft();let sold=0,value=0,cost=0;products.forEach(p=>{let n=q[p.id]||0;sold+=n;value+=n*p.price;cost+=n*p.cost;});document.querySelector('#onlineSold').textContent=sold+' pcs';document.querySelector('#onlineValue').textContent=money(value);document.querySelector('#onlineReceivedPreview').textContent=money(Number(document.querySelector('#onlineReceived').value)||0);document.querySelector('#onlineCost').textContent=money(cost);}
 function renderOnlineInputs(){if(!document.querySelector('#onlineProductInputs'))return;document.querySelector('#onlineProductInputs').innerHTML=products.map(p=>`<div class="product-input"><div><label>${p.name}</label><small>${money(p.price)} jual • ${money(p.cost)} modal</small></div><div class="qty-control"><button type="button" class="qty-btn" data-online-minus="${p.id}">−</button><input class="qty" type="number" min="0" step="1" value="0" data-online-qty="${p.id}"><button type="button" class="qty-btn" data-online-plus="${p.id}">+</button></div></div>`).join('');updateOnlineSummary();}
-function renderOnlineOrderList(){const root=document.querySelector('#onlineOrderList');if(!root)return;const list=[];[...records].sort((a,b)=>b.date.localeCompare(a.date)).forEach(r=>getOnlineOrders(r).forEach(o=>list.push({...o,date:r.date})));root.innerHTML=list.slice(0,12).map(o=>{const count=products.reduce((s,p)=>s+(Number(o.quantities?.[p.id])||0),0);const detail=products.filter(p=>(Number(o.quantities?.[p.id])||0)>0).map(p=>`${p.name} ${o.quantities[p.id]}`).join(' • ')||'Tidak ada item';return `<div class="online-order-card"><strong>${escapeHTML(o.platform)} · ${fmtDate(o.date)}</strong><small>${detail}<br>${count} pcs${o.note?' · '+escapeHTML(o.note):''}</small><div class="order-money">Diterima: ${money(o.received)}</div></div>`;}).join('')||'<p class="muted">Belum ada order online yang dicatat.</p>'; }
+function renderOnlineOrderList(){const root=document.querySelector('#onlineOrderList');if(!root)return;const list=[];[...records].sort((a,b)=>b.date.localeCompare(a.date)).forEach(r=>getOnlineOrders(r).forEach(o=>list.push({...o,date:r.date})));root.innerHTML=list.slice(0,12).map(o=>{const count=products.reduce((s,p)=>s+(Number(o.quantities?.[p.id])||0),0);const detail=products.filter(p=>(Number(o.quantities?.[p.id])||0)>0).map(p=>`${p.name} ${o.quantities[p.id]}`).join(' • ')||'Tidak ada item';return `<div class="online-order-card"><div class="online-order-head"><strong>${escapeHTML(o.platform)} · ${fmtDate(o.date)}</strong><button type="button" class="danger-btn delete-online-order" data-online-id="${escapeHTML(o.id)}" data-online-date="${o.date}">Hapus</button></div><small>${detail}<br>${count} pcs${o.note?' · '+escapeHTML(o.note):''}</small><div class="order-money">Diterima: ${money(o.received)}</div></div>`;}).join('')||'<p class="muted">Belum ada order online yang dicatat.</p>'; }
 
 function renderAll(){renderStats();renderProductBars();renderDailyTable();renderChart();renderHistory();renderProducts();renderInputs();renderOnlineInputs();renderOnlineOrderList();}
 init();
