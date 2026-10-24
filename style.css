@@ -15,3 +15,6 @@ body.light{background:#f5f6f7;color:#17191c}.light .sidebar{background:#fff;bord
 .online-item-list{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
 .online-item-line{display:inline-flex;align-items:center;gap:6px;background:rgba(128,138,150,.10);border:1px solid rgba(128,138,150,.18);border-radius:8px;padding:4px 7px;font-size:12px}
 .delete-online-item{border:0;border-radius:5px;min-width:19px;height:19px;line-height:17px;font-size:16px;font-weight:700;cursor:pointer;background:rgba(220,38,38,.13);color:#ef4444;padding:0 4px}
+
+/* Expense tracking */
+.expense-history-panel{margin-top:14px}.expense-total{display:block;font-size:26px;margin:14px 0;color:#bfe2d0}.light .expense-total{color:#277653}.expense-history-panel .danger-btn{padding:6px 9px;font-size:10px}

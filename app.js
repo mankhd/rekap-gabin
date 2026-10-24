@@ -4,7 +4,7 @@ const DEFAULT_PRODUCTS = [
     "name": "Coklat",
     "price": 10000,
     "cost": 7000,
-    "stock": 16
+    "stock": 0
   },
   {
     "id": "stroberi",
@@ -25,21 +25,21 @@ const DEFAULT_PRODUCTS = [
     "name": "Matcha",
     "price": 10000,
     "cost": 7000,
-    "stock": 2
+    "stock": 0
   },
   {
     "id": "oreo",
     "name": "Oreo",
     "price": 10000,
     "cost": 7000,
-    "stock": 9
+    "stock": 0
   },
   {
     "id": "mangga",
     "name": "Mangga",
     "price": 10000,
     "cost": 7000,
-    "stock": 21
+    "stock": 5
   },
   {
     "id": "milo",
@@ -53,11 +53,60 @@ const DEFAULT_PRODUCTS = [
     "name": "Durian",
     "price": 13000,
     "cost": 5280,
-    "stock": 23
+    "stock": 9
   },
   {
     "id": "blueberry",
     "name": "Blueberry",
+    "price": 10000,
+    "cost": 7000,
+    "stock": 0
+  },
+  {
+    "id": "taro-chocochips",
+    "name": "Taro Chocochips",
+    "price": 10000,
+    "cost": 7000,
+    "stock": 0
+  },
+  {
+    "id": "stroberi-matcha",
+    "name": "Stroberi Matcha",
+    "price": 10000,
+    "cost": 7000,
+    "stock": 0
+  },
+  {
+    "id": "vanilla-gojiberry",
+    "name": "Vanilla Gojiberry",
+    "price": 10000,
+    "cost": 7000,
+    "stock": 0
+  },
+  {
+    "id": "jagung-keju",
+    "name": "Jagung Keju",
+    "price": 10000,
+    "cost": 7000,
+    "stock": 0
+  },
+  {
+    "id": "vanilla-keju",
+    "name": "Vanilla Keju",
+    "price": 10000,
+    "cost": 7000,
+    "stock": 0
+  },
+  {
+    "id": "vanila-regal-keju",
+    "name": "Vanila Regal Keju",
+    "price": 10000,
+    "cost": 7000,
+    "stock": 0
+  },
+  {
+    "id": "lotus-biscoff",
+    "name": "Lotus Biscoff",
     "price": 10000,
     "cost": 7000,
     "stock": 0
@@ -313,11 +362,11 @@ const SAMPLE = [
           }
         },
         {
-          "id": "1791991465949",
-          "note": "",
+          "id": "1791995525432",
+          "note": "orderan shopee pertama",
           "platform": "ShopeeFood",
-          "received": 54150,
-          "createdAt": "2026-10-14T15:24:25.949Z",
+          "received": 40612,
+          "createdAt": "2026-10-14T16:32:05.432Z",
           "quantities": {
             "milo": 1,
             "oreo": 1,
@@ -325,6 +374,293 @@ const SAMPLE = [
             "durian": 0,
             "mangga": 0,
             "matcha": 1,
+            "vanila": 0,
+            "stroberi": 0,
+            "blueberry": 0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "date": "2026-10-15",
+    "sales": {
+      "milo": 0,
+      "oreo": 2,
+      "coklat": 4,
+      "durian": 1,
+      "mangga": 3,
+      "matcha": 2,
+      "vanila": 0,
+      "stroberi": 0,
+      "blueberry": 0,
+      "__onlineOrders": []
+    }
+  },
+  {
+    "date": "2026-10-16",
+    "sales": {
+      "milo": 0,
+      "oreo": 3,
+      "coklat": 3,
+      "durian": 0,
+      "mangga": 0,
+      "matcha": 0,
+      "vanila": 0,
+      "stroberi": 0,
+      "blueberry": 0,
+      "__onlineOrders": [
+        {
+          "id": "1792130192744",
+          "note": "",
+          "platform": "ShopeeFood",
+          "received": 20235,
+          "createdAt": "2026-10-16T05:56:32.744Z",
+          "quantities": {
+            "milo": 0,
+            "oreo": 1,
+            "coklat": 1,
+            "durian": 0,
+            "mangga": 0,
+            "matcha": 0,
+            "vanila": 0,
+            "stroberi": 0,
+            "blueberry": 0
+          }
+        },
+        {
+          "id": "1792130437499",
+          "note": "",
+          "platform": "GrabFood",
+          "received": 27900,
+          "createdAt": "2026-10-16T06:00:37.499Z",
+          "quantities": {
+            "milo": 0,
+            "oreo": 1,
+            "coklat": 1,
+            "durian": 1,
+            "mangga": 0,
+            "matcha": 0,
+            "vanila": 0,
+            "stroberi": 0,
+            "blueberry": 0
+          }
+        },
+        {
+          "id": "1792130464072",
+          "note": "",
+          "platform": "GrabFood",
+          "received": 18600,
+          "createdAt": "2026-10-16T06:01:04.072Z",
+          "quantities": {
+            "milo": 0,
+            "oreo": 2,
+            "coklat": 0,
+            "durian": 0,
+            "mangga": 0,
+            "matcha": 0,
+            "vanila": 0,
+            "stroberi": 0,
+            "blueberry": 0
+          }
+        },
+        {
+          "id": "1792135990422",
+          "note": "",
+          "platform": "GrabFood",
+          "received": 60500,
+          "createdAt": "2026-10-16T07:33:10.422Z",
+          "quantities": {
+            "milo": 0,
+            "oreo": 0,
+            "coklat": 2,
+            "durian": 1,
+            "mangga": 3,
+            "matcha": 0,
+            "vanila": 0,
+            "stroberi": 0,
+            "blueberry": 0
+          }
+        },
+        {
+          "id": "1792150194895",
+          "note": "",
+          "platform": "ShopeeFood",
+          "received": 20235,
+          "createdAt": "2026-10-16T11:29:54.895Z",
+          "quantities": {
+            "milo": 0,
+            "oreo": 0,
+            "coklat": 2,
+            "durian": 0,
+            "mangga": 0,
+            "matcha": 0,
+            "vanila": 0,
+            "stroberi": 0,
+            "blueberry": 0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "date": "2026-10-17",
+    "sales": {
+      "__onlineOrders": [
+        {
+          "id": "1792231049649",
+          "note": "",
+          "platform": "GrabFood",
+          "received": 9920,
+          "createdAt": "2026-10-17T09:57:29.651Z",
+          "quantities": {
+            "milo": 0,
+            "oreo": 0,
+            "coklat": 0,
+            "durian": 0,
+            "mangga": 1,
+            "matcha": 0,
+            "vanila": 0,
+            "stroberi": 0,
+            "blueberry": 0
+          }
+        },
+        {
+          "id": "1792250017222",
+          "note": "",
+          "platform": "GrabFood",
+          "received": 22320,
+          "createdAt": "2026-10-17T15:13:37.222Z",
+          "quantities": {
+            "milo": 0,
+            "oreo": 0,
+            "coklat": 0,
+            "durian": 1,
+            "mangga": 1,
+            "matcha": 0,
+            "vanila": 0,
+            "stroberi": 0,
+            "blueberry": 0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "date": "2026-10-18",
+    "sales": {
+      "__onlineOrders": [
+        {
+          "id": "1792310631279",
+          "note": "",
+          "platform": "GrabFood",
+          "received": 22320,
+          "createdAt": "2026-10-18T08:03:51.279Z",
+          "quantities": {
+            "milo": 0,
+            "oreo": 0,
+            "coklat": 0,
+            "durian": 1,
+            "mangga": 1,
+            "matcha": 0,
+            "vanila": 0,
+            "stroberi": 0,
+            "blueberry": 0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "date": "2026-10-19",
+    "sales": {
+      "milo": 0,
+      "oreo": 0,
+      "coklat": 0,
+      "durian": 3,
+      "mangga": 3,
+      "matcha": 0,
+      "vanila": 0,
+      "stroberi": 0,
+      "blueberry": 0
+    }
+  },
+  {
+    "date": "2026-10-20",
+    "sales": {
+      "__onlineOrders": [
+        {
+          "id": "1792505020078",
+          "note": "",
+          "platform": "GrabFood",
+          "received": 18546,
+          "createdAt": "2026-10-20T14:03:40.078Z",
+          "quantities": {
+            "milo": 0,
+            "oreo": 0,
+            "coklat": 0,
+            "durian": 1,
+            "mangga": 1,
+            "matcha": 0,
+            "vanila": 0,
+            "stroberi": 0,
+            "blueberry": 0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "date": "2026-10-21",
+    "sales": {
+      "__onlineOrders": [
+        {
+          "id": "1792595079950",
+          "note": "",
+          "platform": "GrabFood",
+          "received": 26842,
+          "createdAt": "2026-10-21T15:04:39.950Z",
+          "quantities": {
+            "milo": 0,
+            "oreo": 0,
+            "coklat": 2,
+            "durian": 1,
+            "mangga": 1,
+            "matcha": 0,
+            "vanila": 0,
+            "stroberi": 0,
+            "blueberry": 0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "date": "2026-10-22",
+    "sales": {
+      "milo": 3,
+      "oreo": 0,
+      "coklat": 1,
+      "durian": 1,
+      "mangga": 0,
+      "matcha": 2,
+      "vanila": 0,
+      "stroberi": 0,
+      "blueberry": 0,
+      "__onlineOrders": [
+        {
+          "id": "1792829851141",
+          "note": "",
+          "platform": "ShopeeFood",
+          "received": 20234,
+          "createdAt": "2026-10-24T08:17:31.141Z",
+          "quantities": {
+            "milo": 0,
+            "oreo": 0,
+            "coklat": 0,
+            "durian": 1,
+            "mangga": 1,
+            "matcha": 0,
             "vanila": 0,
             "stroberi": 0,
             "blueberry": 0
@@ -346,6 +682,7 @@ const storedRecords = JSON.parse(localStorage.getItem("gabin_records") || "null"
 const initialRecordMap = new Map(SAMPLE.map(r=>[r.date,r]));
 storedRecords.forEach(r=>{if(!initialRecordMap.has(r.date))initialRecordMap.set(r.date,r);});
 let records = [...initialRecordMap.values()].sort((a,b)=>a.date.localeCompare(b.date));
+let expenses = JSON.parse(localStorage.getItem("gabin_expenses") || "null") || [];
 let currentPeriod = "today";
 let chart;
 
@@ -354,7 +691,7 @@ const $$ = s => [...document.querySelectorAll(s)];
 const money = n => "Rp" + Math.round(n||0).toLocaleString("id-ID");
 const fmtDate = s => new Date(s+"T00:00:00").toLocaleDateString("id-ID",{day:"2-digit",month:"short",year:"numeric"});
 const todayISO = () => { const d=new Date(); const z=n=>String(n).padStart(2,"0"); return `${d.getFullYear()}-${z(d.getMonth()+1)}-${z(d.getDate())}`; };
-function save(){localStorage.setItem("gabin_products",JSON.stringify(products));localStorage.setItem("gabin_records",JSON.stringify(records));}
+function save(){localStorage.setItem("gabin_products",JSON.stringify(products));localStorage.setItem("gabin_records",JSON.stringify(records));localStorage.setItem("gabin_expenses",JSON.stringify(expenses));}
 function adjustStock(quantities, multiplier=-1){
   products.forEach(p=>{const q=Math.max(0,Number(quantities?.[p.id])||0);if(q){p.stock=Math.max(0,(Number(p.stock)||0)+(multiplier*q));}});
   save(); cloudSaveState(); renderProducts();
@@ -443,12 +780,12 @@ function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show"
 function go(section){
   $$(".section").forEach(s=>s.classList.remove("active"));$(`#section-${section}`).classList.add("active");
   $$(".nav-item").forEach(n=>n.classList.toggle("active",n.dataset.section===section));
-  $("#pageTitle").textContent={dashboard:"Dashboard",sales:"Input Penjualan",online:"Penjualan Online",history:"Riwayat Penjualan",products:"Produk & Harga",settings:"Pengaturan"}[section];
+  $("#pageTitle").textContent={dashboard:"Dashboard",sales:"Input Penjualan",online:"Penjualan Online",history:"Riwayat Penjualan",expenses:"Pengeluaran",products:"Produk & Harga",settings:"Pengaturan"}[section];
   $("#sidebar").classList.remove("open");
   if(section==="dashboard"){renderStats();renderProductBars();renderDailyTable();renderChart()}
 }
 function downloadJSON(){
-  const blob=new Blob([JSON.stringify({products,records},null,2)],{type:"application/json"});
+  const blob=new Blob([JSON.stringify({products,records,expenses},null,2)],{type:"application/json"});
   const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="backup-gabin-dashboard.json";a.click();URL.revokeObjectURL(a.href);
 }
 const SUPABASE_URL = "https://lzikpznqgiuxqlxhtenp.supabase.co";
@@ -473,7 +810,7 @@ function mergeRecordsPreferExisting(primary, secondary){
 function structuredCloneSafe(value){return JSON.parse(JSON.stringify(value));}
 async function cloudSaveState(){
   if(!cloud||!cloudReady)return;
-  const payload={products:structuredCloneSafe(products),records:structuredCloneSafe(records)};
+  const payload={products:structuredCloneSafe(products),records:structuredCloneSafe(records),expenses:structuredCloneSafe(expenses)};
   const updatedAt=new Date().toISOString();
   cloudWriteQueue=cloudWriteQueue.then(async()=>{
     const {error}=await cloud.from("gabin_dashboard_state").upsert(
@@ -509,6 +846,7 @@ async function cloudLoad(options={}){
         ? DEFAULT_PRODUCTS.map(d=>({...d,...(cloudState.products.find(p=>p.id===d.id)||{})}))
         : products;
       records=Array.isArray(cloudState.records)?cloudState.records:[];
+      expenses=Array.isArray(cloudState.expenses)?cloudState.expenses:[];
       lastCloudUpdatedAt=stateRow.updated_at||"";
     } else {
       // First-time migration: bring forward the old two-table cloud data, merge it with this uploaded backup,
@@ -595,6 +933,9 @@ function init(){
     for(const rec of records){if(Array.isArray(rec.sales?.__onlineOrders)&&rec.sales.__onlineOrders.length){rec.sales.__onlineOrders.forEach(o=>adjustStock(o.quantities,+1));rec.sales.__onlineOrders=[];await cloudSaveRecord(rec);}}
     save();renderOnlineOrderList();renderStats();renderDailyTable();renderProductBars();renderChart();toast("Semua riwayat online dihapus");
   });
+  document.querySelector('#expenseDate').value=todayISO();
+  document.querySelector('#expenseForm').addEventListener('submit',async e=>{e.preventDefault();const amount=Number(document.querySelector('#expenseAmount').value);if(!Number.isFinite(amount)||amount<=0){toast('Masukkan jumlah pengeluaran yang valid');return;}expenses.push({id:String(Date.now())+'-'+Math.random().toString(36).slice(2,7),date:document.querySelector('#expenseDate').value,category:document.querySelector('#expenseCategory').value,description:document.querySelector('#expenseDescription').value.trim(),amount,note:document.querySelector('#expenseNote').value.trim(),createdAt:new Date().toISOString()});save();await cloudSaveState();document.querySelector('#expenseDescription').value='';document.querySelector('#expenseAmount').value='';document.querySelector('#expenseNote').value='';renderExpenses();toast('Pengeluaran berhasil disimpan');});
+  document.querySelector('#expenseTable').addEventListener('click',async e=>{const btn=e.target.closest('.delete-expense');if(!btn)return;const item=expenses.find(x=>String(x.id)===String(btn.dataset.expenseId));if(!item)return;if(!confirm(`Hapus pengeluaran “${item.description}” sebesar ${money(item.amount)}?`))return;expenses=expenses.filter(x=>String(x.id)!==String(item.id));save();await cloudSaveState();renderExpenses();toast('Pengeluaran dihapus');});
   $("#productInputs").addEventListener("input",updateFormSummary);
   $("#productInputs").addEventListener("click",e=>{unsavedFormChanges=true;const id=e.target.dataset.plus||e.target.dataset.minus;if(!id)return;const input=$(`[data-qty="${id}"]`);let n=Math.max(0,Number(input.value)||0);if(e.target.dataset.plus!==undefined)n++;else n=Math.max(0,n-1);input.value=n;updateFormSummary()});
   $("#historySearch").oninput=renderHistory;
@@ -605,7 +946,7 @@ function init(){
   $("#copyStockMessage").onclick=async()=>{try{await navigator.clipboard.writeText($("#stockMessage").value);toast("Format stok berhasil disalin")}catch{ $("#stockMessage").select();document.execCommand("copy");toast("Format stok disalin")}};
   $("#openWhatsAppChannel").onclick=()=>window.open("https://whatsapp.com/channel/0029VbE1LeZFi8xY7FVC2I1v/100","_blank");
   $("#clearBtn").onclick=async()=>{if(confirm("Hapus seluruh riwayat penjualan? Data tidak bisa dikembalikan kecuali dari backup.")){records=[];save();await cloudSaveState();renderHistory();renderStats();renderDailyTable();renderChart();toast("Semua data dihapus")}};
-  $("#importInput").onchange=e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{try{const d=JSON.parse(rd.result);if(!d.products||!d.records)throw Error();products=DEFAULT_PRODUCTS.map(p=>({...p,...(d.products.find(x=>x.id===p.id)||{})}));records=d.records;save();renderAll();if(cloud){records.forEach(cloudSaveRecord);products.forEach(cloudSaveProduct)}toast("Backup berhasil diimpor")}catch{toast("File backup tidak valid")}};rd.readAsText(f)};
+  $("#importInput").onchange=e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{try{const d=JSON.parse(rd.result);if(!d.products||!d.records)throw Error();products=DEFAULT_PRODUCTS.map(p=>({...p,...(d.products.find(x=>x.id===p.id)||{})}));records=d.records;expenses=Array.isArray(d.expenses)?d.expenses:expenses;save();renderAll();if(cloud){records.forEach(cloudSaveRecord);products.forEach(cloudSaveProduct)}toast("Backup berhasil diimpor")}catch{toast("File backup tidak valid")}};rd.readAsText(f)};
   $("#themeToggle").onclick=()=>{document.body.classList.toggle("light");localStorage.setItem("gabin_theme",document.body.classList.contains("light")?"light":"dark")};
   if(localStorage.getItem("gabin_theme")==="light")document.body.classList.add("light");
   renderAll();
@@ -620,5 +961,13 @@ function updateOnlineSummary(){const q=onlineDraft();let sold=0,value=0,cost=0;p
 function renderOnlineInputs(){if(!document.querySelector('#onlineProductInputs'))return;document.querySelector('#onlineProductInputs').innerHTML=products.map(p=>`<div class="product-input"><div><label>${p.name}</label><small>${money(p.price)} jual • ${money(p.cost)} modal</small></div><div class="qty-control"><button type="button" class="qty-btn" data-online-minus="${p.id}">−</button><input class="qty" type="number" min="0" step="1" value="0" data-online-qty="${p.id}"><button type="button" class="qty-btn" data-online-plus="${p.id}">+</button></div></div>`).join('');updateOnlineSummary();}
 function renderOnlineOrderList(){const root=document.querySelector('#onlineOrderList');if(!root)return;const list=[];[...records].sort((a,b)=>b.date.localeCompare(a.date)).forEach(r=>getOnlineOrders(r).forEach(o=>list.push({...o,date:r.date})));root.innerHTML=list.slice(0,12).map(o=>{const count=products.reduce((s,p)=>s+(Number(o.quantities?.[p.id])||0),0);const detail=products.filter(p=>(Number(o.quantities?.[p.id])||0)>0).map(p=>`<span class="online-item-line">${escapeHTML(p.name)} × ${Number(o.quantities[p.id])}<button type="button" class="delete-online-item" title="Hapus ${escapeHTML(p.name)} dari pesanan" data-online-item="${p.id}" data-online-id="${escapeHTML(o.id)}" data-online-date="${o.date}">×</button></span>`).join(' ')||'Tidak ada item';return `<div class="online-order-card"><div class="online-order-head"><strong>${escapeHTML(o.platform)} · ${fmtDate(o.date)}</strong><button type="button" class="danger-btn delete-online-order" data-online-id="${escapeHTML(o.id)}" data-online-date="${o.date}">Hapus Pesanan</button></div><div class="online-item-list">${detail}</div><small>${count} pcs${o.note?' · '+escapeHTML(o.note):''}</small><div class="order-money">Diterima: ${money(o.received)}</div></div>`;}).join('')||'<p class="muted">Belum ada order online yang dicatat.</p>'; }
 
-function renderAll(){renderStats();renderProductBars();renderDailyTable();renderChart();renderHistory();renderProducts();renderInputs();renderOnlineInputs();renderOnlineOrderList();}
+
+function renderExpenses(){
+ const root=document.querySelector('#expenseTable'); if(!root)return;
+ const rows=[...expenses].sort((a,b)=>b.date.localeCompare(a.date));
+ root.innerHTML=rows.length?rows.map(x=>`<tr><td>${fmtDate(x.date)}</td><td>${escapeHTML(x.category||'Lainnya')}</td><td>${escapeHTML(x.description||'-')}</td><td>${escapeHTML(x.note||'-')}</td><td class="money">${money(x.amount)}</td><td><button type="button" class="danger-btn delete-expense" data-expense-id="${escapeHTML(x.id)}">Hapus</button></td></tr>`).join(''):'<tr><td colspan="6">Belum ada pengeluaran.</td></tr>';
+ const total=expenses.reduce((n,x)=>n+(Number(x.amount)||0),0); const totalEl=document.querySelector('#expenseTotal'); if(totalEl)totalEl.textContent=money(total);
+}
+
+function renderAll(){renderStats();renderProductBars();renderDailyTable();renderChart();renderHistory();renderProducts();renderInputs();renderOnlineInputs();renderOnlineOrderList();renderExpenses();}
 init();

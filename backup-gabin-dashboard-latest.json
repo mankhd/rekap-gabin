@@ -1,0 +1,673 @@
+{
+  "products": [
+    {
+      "id": "coklat",
+      "name": "Coklat",
+      "price": 10000,
+      "cost": 7000,
+      "stock": 0
+    },
+    {
+      "id": "stroberi",
+      "name": "Stroberi",
+      "price": 10000,
+      "cost": 7000,
+      "stock": 0
+    },
+    {
+      "id": "vanila",
+      "name": "Vanila",
+      "price": 10000,
+      "cost": 7000,
+      "stock": 0
+    },
+    {
+      "id": "matcha",
+      "name": "Matcha",
+      "price": 10000,
+      "cost": 7000,
+      "stock": 0
+    },
+    {
+      "id": "oreo",
+      "name": "Oreo",
+      "price": 10000,
+      "cost": 7000,
+      "stock": 0
+    },
+    {
+      "id": "mangga",
+      "name": "Mangga",
+      "price": 10000,
+      "cost": 7000,
+      "stock": 5
+    },
+    {
+      "id": "milo",
+      "name": "Milo",
+      "price": 10000,
+      "cost": 7000,
+      "stock": 0
+    },
+    {
+      "id": "durian",
+      "name": "Durian",
+      "price": 13000,
+      "cost": 5280,
+      "stock": 9
+    },
+    {
+      "id": "blueberry",
+      "name": "Blueberry",
+      "price": 10000,
+      "cost": 7000,
+      "stock": 0
+    },
+    {
+      "id": "taro-chocochips",
+      "name": "Taro Chocochips",
+      "price": 10000,
+      "cost": 7000,
+      "stock": 0
+    },
+    {
+      "id": "stroberi-matcha",
+      "name": "Stroberi Matcha",
+      "price": 10000,
+      "cost": 7000,
+      "stock": 0
+    },
+    {
+      "id": "vanilla-gojiberry",
+      "name": "Vanilla Gojiberry",
+      "price": 10000,
+      "cost": 7000,
+      "stock": 0
+    },
+    {
+      "id": "jagung-keju",
+      "name": "Jagung Keju",
+      "price": 10000,
+      "cost": 7000,
+      "stock": 0
+    },
+    {
+      "id": "vanilla-keju",
+      "name": "Vanilla Keju",
+      "price": 10000,
+      "cost": 7000,
+      "stock": 0
+    },
+    {
+      "id": "vanila-regal-keju",
+      "name": "Vanila Regal Keju",
+      "price": 10000,
+      "cost": 7000,
+      "stock": 0
+    },
+    {
+      "id": "lotus-biscoff",
+      "name": "Lotus Biscoff",
+      "price": 10000,
+      "cost": 7000,
+      "stock": 0
+    }
+  ],
+  "records": [
+    {
+      "date": "2026-09-26",
+      "sales": {
+        "milo": 0,
+        "oreo": 1,
+        "coklat": 1,
+        "mangga": 0,
+        "matcha": 1,
+        "vanila": 1,
+        "stroberi": 1
+      }
+    },
+    {
+      "date": "2026-09-27",
+      "sales": {
+        "milo": 0,
+        "oreo": 2,
+        "coklat": 2,
+        "mangga": 0,
+        "matcha": 1,
+        "vanila": 0,
+        "stroberi": 2
+      }
+    },
+    {
+      "date": "2026-09-28",
+      "sales": {
+        "milo": 1,
+        "oreo": 2,
+        "coklat": 1,
+        "mangga": 0,
+        "matcha": 1,
+        "vanila": 0,
+        "stroberi": 0
+      }
+    },
+    {
+      "date": "2026-09-29",
+      "sales": {
+        "milo": 3,
+        "oreo": 4,
+        "coklat": 2,
+        "mangga": 1,
+        "matcha": 2,
+        "vanila": 2,
+        "stroberi": 4
+      }
+    },
+    {
+      "date": "2026-09-30",
+      "sales": {
+        "milo": 0,
+        "oreo": 4,
+        "coklat": 4,
+        "mangga": 0,
+        "matcha": 0,
+        "vanila": 1,
+        "stroberi": 3
+      }
+    },
+    {
+      "date": "2026-10-01",
+      "sales": {
+        "milo": 1,
+        "oreo": 2,
+        "coklat": 2,
+        "mangga": 1,
+        "matcha": 1,
+        "vanila": 2,
+        "stroberi": 1
+      }
+    },
+    {
+      "date": "2026-10-02",
+      "sales": {
+        "milo": 0,
+        "oreo": 1,
+        "coklat": 1,
+        "mangga": 0,
+        "matcha": 1,
+        "vanila": 1,
+        "stroberi": 1
+      }
+    },
+    {
+      "date": "2026-10-04",
+      "sales": {
+        "milo": 1,
+        "oreo": 1,
+        "coklat": 1,
+        "mangga": 0,
+        "matcha": 1,
+        "vanila": 1,
+        "stroberi": 1
+      }
+    },
+    {
+      "date": "2026-10-05",
+      "sales": {
+        "milo": 0,
+        "oreo": 0,
+        "coklat": 1,
+        "mangga": 0,
+        "matcha": 1,
+        "vanila": 0,
+        "stroberi": 1
+      }
+    },
+    {
+      "date": "2026-10-06",
+      "sales": {
+        "milo": 1,
+        "oreo": 4,
+        "coklat": 4,
+        "mangga": 0,
+        "matcha": 1,
+        "vanila": 2,
+        "stroberi": 0
+      }
+    },
+    {
+      "date": "2026-10-07",
+      "sales": {
+        "milo": 0,
+        "oreo": 1,
+        "coklat": 1,
+        "mangga": 0,
+        "matcha": 1,
+        "vanila": 1,
+        "stroberi": 1
+      }
+    },
+    {
+      "date": "2026-10-08",
+      "sales": {
+        "milo": 1,
+        "oreo": 0,
+        "coklat": 0,
+        "mangga": 1,
+        "matcha": 0,
+        "vanila": 1,
+        "stroberi": 2
+      }
+    },
+    {
+      "date": "2026-10-10",
+      "sales": {
+        "milo": 0,
+        "oreo": 1,
+        "coklat": 1,
+        "mangga": 1,
+        "matcha": 1,
+        "vanila": 0,
+        "stroberi": 1
+      }
+    },
+    {
+      "date": "2026-10-11",
+      "sales": {
+        "milo": 1,
+        "oreo": 2,
+        "coklat": 2,
+        "mangga": 0,
+        "matcha": 2,
+        "vanila": 0,
+        "stroberi": 3
+      }
+    },
+    {
+      "date": "2026-10-12",
+      "sales": {
+        "milo": 0,
+        "oreo": 0,
+        "coklat": 0,
+        "durian": 0,
+        "mangga": 0,
+        "matcha": 1,
+        "vanila": 0,
+        "stroberi": 0,
+        "blueberry": 0
+      }
+    },
+    {
+      "date": "2026-10-13",
+      "sales": {
+        "milo": 3,
+        "oreo": 4,
+        "coklat": 4,
+        "durian": 1,
+        "mangga": 0,
+        "matcha": 2,
+        "vanila": 0,
+        "stroberi": 3,
+        "blueberry": 0,
+        "__onlineOrders": [
+          {
+            "id": "1791910635398",
+            "note": "",
+            "platform": "GrabFood",
+            "received": 21882,
+            "createdAt": "2026-10-13T16:57:15.398Z",
+            "quantities": {
+              "milo": 1,
+              "oreo": 0,
+              "coklat": 0,
+              "durian": 0,
+              "mangga": 1,
+              "matcha": 1,
+              "vanila": 0,
+              "stroberi": 1,
+              "blueberry": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-10-14",
+      "sales": {
+        "milo": 3,
+        "oreo": 4,
+        "coklat": 4,
+        "durian": 1,
+        "mangga": 3,
+        "matcha": 3,
+        "vanila": 0,
+        "stroberi": 2,
+        "blueberry": 0,
+        "__onlineOrders": [
+          {
+            "id": "1791991435257",
+            "note": "",
+            "platform": "GoFood",
+            "received": 11284,
+            "createdAt": "2026-10-14T15:23:55.257Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 0,
+              "coklat": 1,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0
+            }
+          },
+          {
+            "id": "1791995525432",
+            "note": "orderan shopee pertama",
+            "platform": "ShopeeFood",
+            "received": 40612,
+            "createdAt": "2026-10-14T16:32:05.432Z",
+            "quantities": {
+              "milo": 1,
+              "oreo": 1,
+              "coklat": 1,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 1,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-10-15",
+      "sales": {
+        "milo": 0,
+        "oreo": 2,
+        "coklat": 4,
+        "durian": 1,
+        "mangga": 3,
+        "matcha": 2,
+        "vanila": 0,
+        "stroberi": 0,
+        "blueberry": 0,
+        "__onlineOrders": []
+      }
+    },
+    {
+      "date": "2026-10-16",
+      "sales": {
+        "milo": 0,
+        "oreo": 3,
+        "coklat": 3,
+        "durian": 0,
+        "mangga": 0,
+        "matcha": 0,
+        "vanila": 0,
+        "stroberi": 0,
+        "blueberry": 0,
+        "__onlineOrders": [
+          {
+            "id": "1792130192744",
+            "note": "",
+            "platform": "ShopeeFood",
+            "received": 20235,
+            "createdAt": "2026-10-16T05:56:32.744Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 1,
+              "coklat": 1,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0
+            }
+          },
+          {
+            "id": "1792130437499",
+            "note": "",
+            "platform": "GrabFood",
+            "received": 27900,
+            "createdAt": "2026-10-16T06:00:37.499Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 1,
+              "coklat": 1,
+              "durian": 1,
+              "mangga": 0,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0
+            }
+          },
+          {
+            "id": "1792130464072",
+            "note": "",
+            "platform": "GrabFood",
+            "received": 18600,
+            "createdAt": "2026-10-16T06:01:04.072Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 2,
+              "coklat": 0,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0
+            }
+          },
+          {
+            "id": "1792135990422",
+            "note": "",
+            "platform": "GrabFood",
+            "received": 60500,
+            "createdAt": "2026-10-16T07:33:10.422Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 0,
+              "coklat": 2,
+              "durian": 1,
+              "mangga": 3,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0
+            }
+          },
+          {
+            "id": "1792150194895",
+            "note": "",
+            "platform": "ShopeeFood",
+            "received": 20235,
+            "createdAt": "2026-10-16T11:29:54.895Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 0,
+              "coklat": 2,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-10-17",
+      "sales": {
+        "__onlineOrders": [
+          {
+            "id": "1792231049649",
+            "note": "",
+            "platform": "GrabFood",
+            "received": 9920,
+            "createdAt": "2026-10-17T09:57:29.651Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 0,
+              "coklat": 0,
+              "durian": 0,
+              "mangga": 1,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0
+            }
+          },
+          {
+            "id": "1792250017222",
+            "note": "",
+            "platform": "GrabFood",
+            "received": 22320,
+            "createdAt": "2026-10-17T15:13:37.222Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 0,
+              "coklat": 0,
+              "durian": 1,
+              "mangga": 1,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-10-18",
+      "sales": {
+        "__onlineOrders": [
+          {
+            "id": "1792310631279",
+            "note": "",
+            "platform": "GrabFood",
+            "received": 22320,
+            "createdAt": "2026-10-18T08:03:51.279Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 0,
+              "coklat": 0,
+              "durian": 1,
+              "mangga": 1,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-10-19",
+      "sales": {
+        "milo": 0,
+        "oreo": 0,
+        "coklat": 0,
+        "durian": 3,
+        "mangga": 3,
+        "matcha": 0,
+        "vanila": 0,
+        "stroberi": 0,
+        "blueberry": 0
+      }
+    },
+    {
+      "date": "2026-10-20",
+      "sales": {
+        "__onlineOrders": [
+          {
+            "id": "1792505020078",
+            "note": "",
+            "platform": "GrabFood",
+            "received": 18546,
+            "createdAt": "2026-10-20T14:03:40.078Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 0,
+              "coklat": 0,
+              "durian": 1,
+              "mangga": 1,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-10-21",
+      "sales": {
+        "__onlineOrders": [
+          {
+            "id": "1792595079950",
+            "note": "",
+            "platform": "GrabFood",
+            "received": 26842,
+            "createdAt": "2026-10-21T15:04:39.950Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 0,
+              "coklat": 2,
+              "durian": 1,
+              "mangga": 1,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-10-22",
+      "sales": {
+        "milo": 3,
+        "oreo": 0,
+        "coklat": 1,
+        "durian": 1,
+        "mangga": 0,
+        "matcha": 2,
+        "vanila": 0,
+        "stroberi": 0,
+        "blueberry": 0,
+        "__onlineOrders": [
+          {
+            "id": "1792829851141",
+            "note": "",
+            "platform": "ShopeeFood",
+            "received": 20234,
+            "createdAt": "2026-10-24T08:17:31.141Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 0,
+              "coklat": 0,
+              "durian": 1,
+              "mangga": 1,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

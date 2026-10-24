@@ -170,6 +170,23 @@
         </div>
       </section>
 
+
+      <section class="section" id="section-expenses">
+        <div class="section-heading"><div><span class="hero-kicker">CATATAN KEUANGAN</span><h2>Pengeluaran</h2><p>Catat pengeluaran harian, untuk apa, dan keterangan tambahan. Data ikut tersinkron ke Supabase.</p></div></div>
+        <div class="form-layout">
+          <form class="panel" id="expenseForm">
+            <div class="form-top"><h3>Tambah Pengeluaran</h3><input type="date" id="expenseDate" required></div>
+            <label class="field-label" for="expenseCategory">Kategori</label><select class="field-select" id="expenseCategory"><option>Bahan baku</option><option>Kemasan</option><option>Transportasi</option><option>Biaya platform</option><option>Operasional</option><option>Lainnya</option></select>
+            <label class="field-label" for="expenseDescription">Untuk apa?</label><input class="money-input" id="expenseDescription" maxlength="140" placeholder="Contoh: beli gabin dan es krim" required>
+            <label class="field-label" for="expenseAmount">Jumlah pengeluaran (Rp)</label><input class="money-input" id="expenseAmount" type="number" min="1" step="1" placeholder="Contoh: 50000" required>
+            <label class="field-label" for="expenseNote">Keterangan tambahan (opsional)</label><input class="money-input" id="expenseNote" maxlength="200" placeholder="Contoh: dibeli di toko A">
+            <div class="setting-actions"><button class="primary-btn" type="submit">Simpan Pengeluaran</button></div>
+          </form>
+          <aside class="panel"><h3>Total Pengeluaran Tercatat</h3><strong id="expenseTotal" class="expense-total">Rp0</strong><p class="muted">Total semua catatan pengeluaran yang tersimpan.</p></aside>
+        </div>
+        <div class="panel expense-history-panel"><div class="panel-head"><div><h3>Riwayat Pengeluaran</h3><p>Pengeluaran dapat dihapus satu per satu.</p></div></div><div class="table-scroll"><table><thead><tr><th>Tanggal</th><th>Kategori</th><th>Untuk apa</th><th>Keterangan</th><th>Jumlah</th><th>Aksi</th></tr></thead><tbody id="expenseTable"></tbody></table></div></div>
+      </section>
+
       <section class="section" id="section-products">
         <div class="section-heading"><div><span class="hero-kicker">KATALOG & INVENTARIS</span><h2>Produk & Stok</h2><p>Atur harga, modal, dan stok tersedia. Perubahan stok tersinkron ke cloud.</p></div></div>
         <div class="products-grid" id="productsGrid"></div>
@@ -179,7 +196,7 @@
       <section class="section" id="section-settings">
         <div class="section-heading"><div><span class="hero-kicker">PENGATURAN</span><h2>Pengaturan Dashboard</h2><p>Kelola data lokal dan tampilan aplikasi.</p></div></div>
         <div class="settings-grid">
-          <div class="panel"><h3>Sinkronisasi Cloud</h3><p class="muted">Agar data yang dimasukkan dari HP otomatis muncul di laptop dan perangkat lain, dashboard menggunakan database online Supabase.</p><div class="cloud-status" id="cloudStatus"><span class="status-dot"></span><span>Mode lokal</span></div><div class="setting-actions"><button class="ghost-btn" id="backupBtn">Backup Data</button><label class="ghost-btn file-btn">Import Data<input type="file" id="importInput" accept=".json"></label></div><p class="muted small-note">Data penjualan memakai tabel <code>gabin_daily_sales</code> dan inventaris memakai <code>gabin_inventory</code>.</p></div>
+          <div class="panel"><h3>Sinkronisasi Cloud</h3><p class="muted">Agar data yang dimasukkan dari HP otomatis muncul di laptop dan perangkat lain, dashboard menggunakan database online Supabase.</p><div class="cloud-status" id="cloudStatus"><span class="status-dot"></span><span>Mode lokal</span></div><div class="setting-actions"><button class="ghost-btn" id="backupBtn">Backup Data</button><label class="ghost-btn file-btn">Import Data<input type="file" id="importInput" accept=".json"></label></div><p class="muted small-note">Penjualan, produk, dan pengeluaran disimpan bersama di tabel <code>gabin_dashboard_state</code>.</p></div>
           <div class="panel"><h3>Tentang</h3><p class="muted">Dashboard ini mengikuti struktur laporan: Produk, tanggal, total terjual, penghasilan/omzet, total modal, dan keuntungan.</p><div class="about-chip">Gabin Sales Dashboard • GitHub Ready</div></div>
         </div>
       </section>
