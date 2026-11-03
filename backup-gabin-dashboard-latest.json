@@ -40,7 +40,7 @@
       "name": "Mangga",
       "price": 10000,
       "cost": 7000,
-      "stock": 5
+      "stock": 0
     },
     {
       "id": "milo",
@@ -54,33 +54,33 @@
       "name": "Durian",
       "price": 13000,
       "cost": 5280,
-      "stock": 9
+      "stock": 1
     },
     {
       "id": "blueberry",
       "name": "Blueberry",
-      "price": 10000,
+      "price": 13000,
       "cost": 7000,
       "stock": 0
     },
     {
       "id": "taro-chocochips",
       "name": "Taro Chocochips",
-      "price": 10000,
+      "price": 14000,
       "cost": 7000,
       "stock": 0
     },
     {
       "id": "stroberi-matcha",
       "name": "Stroberi Matcha",
-      "price": 10000,
+      "price": 14000,
       "cost": 7000,
       "stock": 0
     },
     {
       "id": "vanilla-gojiberry",
       "name": "Vanilla Gojiberry",
-      "price": 10000,
+      "price": 13000,
       "cost": 7000,
       "stock": 0
     },
@@ -94,7 +94,7 @@
     {
       "id": "vanilla-keju",
       "name": "Vanilla Keju",
-      "price": 10000,
+      "price": 13000,
       "cost": 7000,
       "stock": 0
     },
@@ -108,7 +108,7 @@
     {
       "id": "lotus-biscoff",
       "name": "Lotus Biscoff",
-      "price": 10000,
+      "price": 15000,
       "cost": 7000,
       "stock": 0
     }
@@ -668,6 +668,1016 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-10-24",
+      "sales": {
+        "milo": 1,
+        "oreo": 1,
+        "coklat": 1,
+        "durian": 1,
+        "mangga": 1,
+        "matcha": 1,
+        "vanila": 1,
+        "stroberi": 1,
+        "blueberry": 0,
+        "jagung-keju": 0,
+        "vanilla-keju": 0,
+        "lotus-biscoff": 0,
+        "__onlineOrders": [
+          {
+            "id": "1792835301062",
+            "note": "",
+            "platform": "GoFood",
+            "received": 59926,
+            "createdAt": "2026-10-24T09:48:21.062Z",
+            "quantities": {
+              "milo": 3,
+              "oreo": 0,
+              "coklat": 0,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 2,
+              "vanila": 3,
+              "stroberi": 0,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          },
+          {
+            "id": "1792853644998",
+            "note": "",
+            "platform": "GoFood",
+            "received": 23870,
+            "createdAt": "2026-10-24T14:54:04.998Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 0,
+              "coklat": 0,
+              "durian": 1,
+              "mangga": 1,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          }
+        ],
+        "stroberi-matcha": 0,
+        "taro-chocochips": 0,
+        "vanila-regal-keju": 0,
+        "vanilla-gojiberry": 0
+      }
+    },
+    {
+      "date": "2026-10-25",
+      "sales": {
+        "milo": 1,
+        "oreo": 9,
+        "coklat": 6,
+        "durian": 0,
+        "mangga": 0,
+        "matcha": 7,
+        "vanila": 4,
+        "stroberi": 4,
+        "blueberry": 0,
+        "jagung-keju": 0,
+        "vanilla-keju": 0,
+        "lotus-biscoff": 0,
+        "stroberi-matcha": 0,
+        "taro-chocochips": 0,
+        "vanila-regal-keju": 0,
+        "vanilla-gojiberry": 0
+      }
+    },
+    {
+      "date": "2026-10-26",
+      "sales": {
+        "__onlineOrders": [
+          {
+            "id": "1793084080163",
+            "note": "2 order grab",
+            "platform": "GrabFood",
+            "received": 28012,
+            "createdAt": "2026-10-27T06:54:40.163Z",
+            "quantities": {
+              "milo": 1,
+              "oreo": 2,
+              "coklat": 1,
+              "durian": 0,
+              "mangga": 1,
+              "matcha": 0,
+              "vanila": 1,
+              "stroberi": 0,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          },
+          {
+            "id": "1793084165943",
+            "note": "",
+            "platform": "ShopeeFood",
+            "received": 18346,
+            "createdAt": "2026-10-27T06:56:05.943Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 0,
+              "coklat": 0,
+              "durian": 1,
+              "mangga": 0,
+              "matcha": 1,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-10-27",
+      "sales": {
+        "milo": 0,
+        "oreo": 1,
+        "coklat": 1,
+        "durian": 0,
+        "mangga": 0,
+        "matcha": 3,
+        "vanila": 0,
+        "stroberi": 0,
+        "blueberry": 0,
+        "jagung-keju": 0,
+        "vanilla-keju": 0,
+        "lotus-biscoff": 0,
+        "__onlineOrders": [
+          {
+            "id": "1793084284597",
+            "note": "",
+            "platform": "GoFood",
+            "received": 53777,
+            "createdAt": "2026-10-27T06:58:04.597Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 1,
+              "coklat": 1,
+              "durian": 1,
+              "mangga": 1,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 1,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          },
+          {
+            "id": "1793114375866",
+            "note": "",
+            "platform": "ShopeeFood",
+            "received": 15703,
+            "createdAt": "2026-10-27T15:19:35.866Z",
+            "quantities": {
+              "milo": 1,
+              "oreo": 0,
+              "coklat": 0,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 1,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          }
+        ],
+        "stroberi-matcha": 0,
+        "taro-chocochips": 0,
+        "vanila-regal-keju": 0,
+        "vanilla-gojiberry": 0
+      }
+    },
+    {
+      "date": "2026-10-28",
+      "sales": {
+        "milo": 1,
+        "oreo": 3,
+        "coklat": 5,
+        "durian": 2,
+        "mangga": 2,
+        "matcha": 4,
+        "vanila": 2,
+        "stroberi": 2,
+        "blueberry": 1,
+        "jagung-keju": 0,
+        "vanilla-keju": 0,
+        "lotus-biscoff": 0,
+        "__onlineOrders": [
+          {
+            "id": "1793197334750",
+            "note": "",
+            "platform": "GrabFood",
+            "received": 51200,
+            "createdAt": "2026-10-28T14:22:14.750Z",
+            "quantities": {
+              "milo": 1,
+              "oreo": 1,
+              "coklat": 1,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 0,
+              "vanila": 1,
+              "stroberi": 0,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          },
+          {
+            "id": "1793197460060",
+            "note": "",
+            "platform": "ShopeeFood",
+            "received": 53771,
+            "createdAt": "2026-10-28T14:24:20.060Z",
+            "quantities": {
+              "milo": 1,
+              "oreo": 1,
+              "coklat": 0,
+              "durian": 0,
+              "mangga": 3,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 2,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          },
+          {
+            "id": "1793197523013",
+            "note": "",
+            "platform": "ShopeeFood",
+            "received": 16374,
+            "createdAt": "2026-10-28T14:25:23.013Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 0,
+              "coklat": 1,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 1,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          }
+        ],
+        "stroberi-matcha": 1,
+        "taro-chocochips": 0,
+        "vanila-regal-keju": 0,
+        "vanilla-gojiberry": 1
+      }
+    },
+    {
+      "date": "2026-10-29",
+      "sales": {
+        "milo": 1,
+        "oreo": 1,
+        "coklat": 1,
+        "durian": 0,
+        "mangga": 1,
+        "matcha": 1,
+        "vanila": 1,
+        "stroberi": 1,
+        "blueberry": 1,
+        "jagung-keju": 0,
+        "vanilla-keju": 0,
+        "lotus-biscoff": 1,
+        "stroberi-matcha": 1,
+        "taro-chocochips": 1,
+        "vanila-regal-keju": 0,
+        "vanilla-gojiberry": 1
+      }
+    },
+    {
+      "date": "2026-10-30",
+      "sales": {
+        "__onlineOrders": [
+          {
+            "id": "1793376785117",
+            "note": "pick up sendiri",
+            "platform": "GrabFood",
+            "received": 32800,
+            "createdAt": "2026-10-30T16:13:05.117Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 0,
+              "coklat": 0,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 1,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 1
+            }
+          },
+          {
+            "id": "1793376820152",
+            "note": "",
+            "platform": "GrabFood",
+            "received": 22940,
+            "createdAt": "2026-10-30T16:13:40.152Z",
+            "quantities": {
+              "milo": 1,
+              "oreo": 0,
+              "coklat": 0,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 0,
+              "vanila": 1,
+              "stroberi": 0,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          },
+          {
+            "id": "1793376968190",
+            "note": "",
+            "platform": "ShopeeFood",
+            "received": 16229,
+            "createdAt": "2026-10-30T16:16:08.190Z",
+            "quantities": {
+              "milo": 1,
+              "oreo": 1,
+              "coklat": 0,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          },
+          {
+            "id": "1793377001462",
+            "note": "",
+            "platform": "ShopeeFood",
+            "received": 22844,
+            "createdAt": "2026-10-30T16:16:41.462Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 0,
+              "coklat": 0,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 1,
+              "vanila": 0,
+              "stroberi": 1,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          },
+          {
+            "id": "1793377052491",
+            "note": "",
+            "platform": "ShopeeFood",
+            "received": 16519,
+            "createdAt": "2026-10-30T16:17:32.491Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 0,
+              "coklat": 2,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          },
+          {
+            "id": "1793377160035",
+            "note": "",
+            "platform": "ShopeeFood",
+            "received": 39526,
+            "createdAt": "2026-10-30T16:19:20.035Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 1,
+              "coklat": 2,
+              "durian": 0,
+              "mangga": 1,
+              "matcha": 0,
+              "vanila": 1,
+              "stroberi": 0,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-10-31",
+      "sales": {
+        "milo": 1,
+        "oreo": 1,
+        "coklat": 1,
+        "durian": 1,
+        "mangga": 0,
+        "matcha": 1,
+        "vanila": 0,
+        "stroberi": 1,
+        "blueberry": 0,
+        "jagung-keju": 0,
+        "vanilla-keju": 2,
+        "lotus-biscoff": 2,
+        "__onlineOrders": [
+          {
+            "id": "1793435397919",
+            "note": "",
+            "platform": "GrabFood",
+            "received": 52080,
+            "createdAt": "2026-10-31T08:29:57.919Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 1,
+              "coklat": 1,
+              "durian": 0,
+              "mangga": 1,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 1,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 1
+            }
+          }
+        ],
+        "stroberi-matcha": 0,
+        "taro-chocochips": 0,
+        "vanila-regal-keju": 0,
+        "vanilla-gojiberry": 0
+      }
+    },
+    {
+      "date": "2026-11-01",
+      "sales": {
+        "__onlineOrders": [
+          {
+            "id": "1793608227894",
+            "note": "",
+            "platform": "ShopeeFood",
+            "received": 24923,
+            "createdAt": "2026-11-02T08:30:27.894Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 1,
+              "coklat": 1,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 0,
+              "vanila": 1,
+              "stroberi": 0,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          },
+          {
+            "id": "1793608251654",
+            "note": "",
+            "platform": "ShopeeFood",
+            "received": 24923,
+            "createdAt": "2026-11-02T08:30:51.654Z",
+            "quantities": {
+              "milo": 1,
+              "oreo": 0,
+              "coklat": 1,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 1,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          },
+          {
+            "id": "1793608266846",
+            "note": "",
+            "platform": "ShopeeFood",
+            "received": 8404,
+            "createdAt": "2026-11-02T08:31:06.846Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 0,
+              "coklat": 0,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 1,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          },
+          {
+            "id": "1793608285198",
+            "note": "",
+            "platform": "ShopeeFood",
+            "received": 16519,
+            "createdAt": "2026-11-02T08:31:25.198Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 1,
+              "coklat": 0,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 1,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          },
+          {
+            "id": "1793608622183",
+            "note": "",
+            "platform": "GoFood",
+            "received": 11678,
+            "createdAt": "2026-11-02T08:37:02.183Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 0,
+              "coklat": 0,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 1,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          },
+          {
+            "id": "1793608760612",
+            "note": "",
+            "platform": "GoFood",
+            "received": 25369,
+            "createdAt": "2026-11-02T08:39:20.612Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 1,
+              "coklat": 0,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 0,
+              "vanila": 1,
+              "stroberi": 0,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          },
+          {
+            "id": "1793608923491",
+            "note": "",
+            "platform": "GoFood",
+            "received": 39680,
+            "createdAt": "2026-11-02T08:42:03.491Z",
+            "quantities": {
+              "milo": 1,
+              "oreo": 1,
+              "coklat": 0,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 1,
+              "vanila": 0,
+              "stroberi": 1,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "date": "2026-11-02",
+      "sales": {
+        "__onlineOrders": [
+          {
+            "id": "1793682617389",
+            "note": "",
+            "platform": "ShopeeFood",
+            "received": 77912,
+            "createdAt": "2026-11-03T05:10:17.389Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 1,
+              "coklat": 3,
+              "durian": 1,
+              "mangga": 1,
+              "matcha": 0,
+              "vanila": 1,
+              "stroberi": 1,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 1,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          },
+          {
+            "id": "1793682650724",
+            "note": "",
+            "platform": "ShopeeFood",
+            "received": 23705,
+            "createdAt": "2026-11-03T05:10:50.724Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 0,
+              "coklat": 0,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 1,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 1
+            }
+          },
+          {
+            "id": "1793682684537",
+            "note": "",
+            "platform": "ShopeeFood",
+            "received": 8404,
+            "createdAt": "2026-11-03T05:11:24.537Z",
+            "quantities": {
+              "milo": 0,
+              "oreo": 0,
+              "coklat": 1,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          },
+          {
+            "id": "1793682723014",
+            "note": "",
+            "platform": "ShopeeFood",
+            "received": 24778,
+            "createdAt": "2026-11-03T05:12:03.014Z",
+            "quantities": {
+              "milo": 1,
+              "oreo": 2,
+              "coklat": 0,
+              "durian": 0,
+              "mangga": 0,
+              "matcha": 0,
+              "vanila": 0,
+              "stroberi": 0,
+              "blueberry": 0,
+              "jagung-keju": 0,
+              "vanilla-keju": 0,
+              "lotus-biscoff": 0,
+              "stroberi-matcha": 0,
+              "taro-chocochips": 0,
+              "vanila-regal-keju": 0,
+              "vanilla-gojiberry": 0
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "expenses": [
+    {
+      "id": "1792831267009-779t0",
+      "date": "2026-10-23",
+      "note": "ocu dan tebu",
+      "amount": 92000,
+      "category": "Lainnya",
+      "createdAt": "2026-10-24T08:41:07.009Z",
+      "description": "beli makan"
+    },
+    {
+      "id": "1792831290757-00xex",
+      "date": "2026-10-23",
+      "note": "bayar ae bca",
+      "amount": 500000,
+      "category": "Lainnya",
+      "createdAt": "2026-10-24T08:41:30.757Z",
+      "description": "bayar ae"
+    },
+    {
+      "id": "1792996337400-im82g",
+      "date": "2026-10-26",
+      "note": "shopee",
+      "amount": 34000,
+      "category": "Operasional",
+      "createdAt": "2026-10-26T06:32:17.401Z",
+      "description": "stiker 3 design, 6 lembar"
+    },
+    {
+      "id": "1793013349346-8xbgo",
+      "date": "2026-10-26",
+      "note": "",
+      "amount": 300000,
+      "category": "Lainnya",
+      "createdAt": "2026-10-26T11:15:49.346Z",
+      "description": "bayar paket mama"
+    },
+    {
+      "id": "1793168902079-ubhxo",
+      "date": "2026-10-28",
+      "note": "shopee bel",
+      "amount": 75000,
+      "category": "Lainnya",
+      "createdAt": "2026-10-28T06:28:22.079Z",
+      "description": "beli bel"
+    },
+    {
+      "id": "1793169468116-5fni1",
+      "date": "2026-10-27",
+      "note": "BLM DI TF DARI GRAB DAN SGHOPEE DAN CASH",
+      "amount": 66357,
+      "category": "Lainnya",
+      "createdAt": "2026-10-28T06:37:48.116Z",
+      "description": "BLM DI TF"
+    },
+    {
+      "id": "1793202039023-cwmfb",
+      "date": "2026-10-28",
+      "note": "gopay",
+      "amount": 21400,
+      "category": "Lainnya",
+      "createdAt": "2026-10-28T15:40:39.023Z",
+      "description": "token 20k"
+    },
+    {
+      "id": "1793253651848-trtrm",
+      "date": "2026-10-29",
+      "note": "",
+      "amount": 82400,
+      "category": "Lainnya",
+      "createdAt": "2026-10-29T06:00:51.850Z",
+      "description": "beli 2 susu dan 2 keju"
+    },
+    {
+      "id": "1793281426071-doe2o",
+      "date": "2026-10-29",
+      "note": "",
+      "amount": 61000,
+      "category": "Lainnya",
+      "createdAt": "2026-10-29T13:43:46.072Z",
+      "description": "beli makan mie jebew"
+    },
+    {
+      "id": "1793353552005-v0w5o",
+      "date": "2026-10-30",
+      "note": "",
+      "amount": 190000,
+      "category": "Lainnya",
+      "createdAt": "2026-10-30T09:45:52.006Z",
+      "description": "bayar paket mama lagii"
+    },
+    {
+      "id": "1793368430191-uac4j",
+      "date": "2026-10-30",
+      "note": "",
+      "amount": 56000,
+      "category": "Lainnya",
+      "createdAt": "2026-10-30T13:53:50.191Z",
+      "description": "beli makan raihan"
+    },
+    {
+      "id": "1793368460956-u6b1y",
+      "date": "2026-10-30",
+      "note": "",
+      "amount": 25000,
+      "category": "Lainnya",
+      "createdAt": "2026-10-30T13:54:20.956Z",
+      "description": "bayar ae ketemu purbaya"
+    },
+    {
+      "id": "1793372088683-tjdfk",
+      "date": "2026-10-30",
+      "note": "",
+      "amount": 1000,
+      "category": "Lainnya",
+      "createdAt": "2026-10-30T14:54:48.683Z",
+      "description": "parkir raihan"
+    },
+    {
+      "id": "1793372128227-51en6",
+      "date": "2026-10-30",
+      "note": "",
+      "amount": 150000,
+      "category": "Lainnya",
+      "createdAt": "2026-10-30T14:55:28.227Z",
+      "description": "bayar nasgor, galon, tf mama dll"
+    },
+    {
+      "id": "1793435134157-b74rj",
+      "date": "2026-10-31",
+      "note": "",
+      "amount": 20500,
+      "category": "Bahan baku",
+      "createdAt": "2026-10-31T08:25:34.158Z",
+      "description": "beli susu 1"
+    },
+    {
+      "id": "1793458605109-8wezg",
+      "date": "2026-10-31",
+      "note": "",
+      "amount": 56000,
+      "category": "Lainnya",
+      "createdAt": "2026-10-31T14:56:45.109Z",
+      "description": "beli makan mie aceh"
+    },
+    {
+      "id": "1793461414612-qd56u",
+      "date": "2026-10-31",
+      "note": "",
+      "amount": 21650,
+      "category": "Lainnya",
+      "createdAt": "2026-10-31T15:43:34.613Z",
+      "description": "token"
+    },
+    {
+      "id": "1793510646168-ac1km",
+      "date": "2026-11-01",
+      "note": "",
+      "amount": 50000,
+      "category": "Lainnya",
+      "createdAt": "2026-11-01T05:24:06.168Z",
+      "description": "beli tomat, cabe rawit, cabe merah"
+    },
+    {
+      "id": "1793539510818-ytizs",
+      "date": "2026-11-01",
+      "note": "",
+      "amount": 10000,
+      "category": "Lainnya",
+      "createdAt": "2026-11-01T13:25:10.818Z",
+      "description": "bayar stiker benico"
     }
   ]
 }
