@@ -731,7 +731,7 @@ function renderStats(){
   $("#periodLabel").textContent=currentPeriod==="today"?"Hari Ini":currentPeriod==="month"?"Bulan Ini":"Semua Data";
 }
 function renderProductBars(){
-  const totals={};products.forEach(p=>totals[p.id]=records.reduce((n,r)=>n+Number(r.sales?.[p.id]||0),0));
+  const totals={};products.forEach(p=>totals[p.id]=records.reduce((n,r)=>n+Number(r.sales?.[p.id]||0)+getOnlineOrders(r).reduce((s,o)=>s+Number(o.quantities?.[p.id]||0),0),0));
   const max=Math.max(1,...Object.values(totals));
   $("#productBars").innerHTML=products.map(p=>`<div class="bar-row"><span>${p.name}</span><div class="bar-track"><div class="bar-fill" style="width:${totals[p.id]/max*100}%"></div></div><b>${totals[p.id]}</b></div>`).join("");
 }
@@ -836,6 +836,10 @@ async function cloudSaveState(){
 async function cloudSaveRecord(_record){return cloudSaveState();}
 async function cloudSaveProduct(_product){return cloudSaveState();}
 async function cloudDeleteRecord(date){records=records.filter(r=>r.date!==date);save();return cloudSaveState();}
+function normalizeProductNames(){
+  // Keep the historic product ID, but force the corrected display label in local/cloud/imported state.
+  products=products.map(p=>p.id==="vanila-regal-keju"?{...p,name:"Vanilla Regal"}:p);
+}
 async function cloudLoad(options={}){
   if(!cloud)return;
   const silent=!!options.silent;
@@ -852,6 +856,7 @@ async function cloudLoad(options={}){
       products=Array.isArray(cloudState.products)&&cloudState.products.length
         ? DEFAULT_PRODUCTS.map(d=>({...d,...(cloudState.products.find(p=>p.id===d.id)||{})}))
         : products;
+      normalizeProductNames();
       records=Array.isArray(cloudState.records)?cloudState.records:[];
       expenses=Array.isArray(cloudState.expenses)?cloudState.expenses:[];
       lastCloudUpdatedAt=stateRow.updated_at||"";
@@ -953,10 +958,11 @@ function init(){
   $("#copyStockMessage").onclick=async()=>{try{await navigator.clipboard.writeText($("#stockMessage").value);toast("Format stok berhasil disalin")}catch{ $("#stockMessage").select();document.execCommand("copy");toast("Format stok disalin")}};
   $("#openWhatsAppChannel").onclick=()=>window.open("https://whatsapp.com/channel/0029VbE1LeZFi8xY7FVC2I1v/100","_blank");
   $("#clearBtn").onclick=async()=>{if(confirm("Hapus seluruh riwayat penjualan? Data tidak bisa dikembalikan kecuali dari backup.")){records=[];save();await cloudSaveState();renderHistory();renderStats();renderDailyTable();renderChart();toast("Semua data dihapus")}};
-  $("#importInput").onchange=e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{try{const d=JSON.parse(rd.result);if(!d.products||!d.records)throw Error();products=DEFAULT_PRODUCTS.map(p=>({...p,...(d.products.find(x=>x.id===p.id)||{})}));records=d.records;expenses=Array.isArray(d.expenses)?d.expenses:expenses;save();renderAll();if(cloud){records.forEach(cloudSaveRecord);products.forEach(cloudSaveProduct)}toast("Backup berhasil diimpor")}catch{toast("File backup tidak valid")}};rd.readAsText(f)};
+  $("#importInput").onchange=e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{try{const d=JSON.parse(rd.result);if(!d.products||!d.records)throw Error();products=DEFAULT_PRODUCTS.map(p=>({...p,...(d.products.find(x=>x.id===p.id)||{})}));normalizeProductNames();records=d.records;expenses=Array.isArray(d.expenses)?d.expenses:expenses;save();renderAll();if(cloud){records.forEach(cloudSaveRecord);products.forEach(cloudSaveProduct)}toast("Backup berhasil diimpor")}catch{toast("File backup tidak valid")}};rd.readAsText(f)};
   $("#themeToggle").onclick=()=>{document.body.classList.toggle("light");localStorage.setItem("gabin_theme",document.body.classList.contains("light")?"light":"dark")};
   if(localStorage.getItem("gabin_theme")==="light")document.body.classList.add("light");
   renderAll();
+  normalizeProductNames();
   cloudLoad();
   if(cloud) setInterval(()=>cloudLoad({silent:true}),30000);
 }
@@ -966,7 +972,7 @@ function escapeHTML(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;',
 function onlineDraft(){const q={};document.querySelectorAll('#onlineProductInputs [data-online-qty]').forEach(i=>q[i.dataset.onlineQty]=Math.max(0,Number(i.value)||0));return q;}
 function updateOnlineSummary(){const q=onlineDraft();let sold=0,value=0,cost=0;products.forEach(p=>{let n=q[p.id]||0;sold+=n;value+=n*p.price;cost+=n*p.cost;});document.querySelector('#onlineSold').textContent=sold+' pcs';document.querySelector('#onlineValue').textContent=money(value);document.querySelector('#onlineReceivedPreview').textContent=money(Number(document.querySelector('#onlineReceived').value)||0);document.querySelector('#onlineCost').textContent=money(cost);}
 function renderOnlineInputs(){if(!document.querySelector('#onlineProductInputs'))return;document.querySelector('#onlineProductInputs').innerHTML=products.map(p=>`<div class="product-input"><div><label>${p.name}</label><small>${money(p.price)} jual • ${money(p.cost)} modal</small></div><div class="qty-control"><button type="button" class="qty-btn" data-online-minus="${p.id}">−</button><input class="qty" type="number" min="0" step="1" value="0" data-online-qty="${p.id}"><button type="button" class="qty-btn" data-online-plus="${p.id}">+</button></div></div>`).join('');updateOnlineSummary();}
-function renderOnlineOrderList(){const root=document.querySelector('#onlineOrderList');if(!root)return;const list=[];[...records].forEach(r=>getOnlineOrders(r).forEach(o=>list.push({...o,date:r.date})));list.sort((a,b)=>(String(b.createdAt||b.date).localeCompare(String(a.createdAt||a.date))));const totalOnline=list.reduce((sum,o)=>sum+(Number(o.received)||0),0);const totalEl=document.querySelector('#onlineTotalSales');if(totalEl)totalEl.textContent=money(totalOnline);root.innerHTML=list.slice(0,12).map(o=>{const count=products.reduce((s,p)=>s+(Number(o.quantities?.[p.id])||0),0);const detail=products.filter(p=>(Number(o.quantities?.[p.id])||0)>0).map(p=>`<span class="online-item-line">${escapeHTML(p.name)} × ${Number(o.quantities[p.id])}<button type="button" class="delete-online-item" title="Hapus ${escapeHTML(p.name)} dari pesanan" data-online-item="${p.id}" data-online-id="${escapeHTML(o.id)}" data-online-date="${o.date}">×</button></span>`).join(' ')||'Tidak ada item';return `<div class="online-order-card"><div class="online-order-head"><strong>${escapeHTML(o.platform)} · ${fmtDate(o.date)}</strong><button type="button" class="danger-btn delete-online-order" data-online-id="${escapeHTML(o.id)}" data-online-date="${o.date}">Hapus Pesanan</button></div><div class="online-item-list">${detail}</div><small>${count} pcs${o.note?' · '+escapeHTML(o.note):''}</small><div class="order-money">Diterima: ${money(o.received)}</div></div>`;}).join('')||'<p class="muted">Belum ada order online yang dicatat.</p>'; }
+function renderOnlineOrderList(){const root=document.querySelector('#onlineOrderList');if(!root)return;const list=[];[...records].forEach(r=>getOnlineOrders(r).forEach(o=>list.push({...o,date:r.date})));list.sort((a,b)=>(String(b.createdAt||b.date).localeCompare(String(a.createdAt||a.date))));const totalOnline=list.reduce((sum,o)=>sum+(Number(o.received)||0),0);const byDate={};list.forEach(o=>byDate[o.date]=(byDate[o.date]||0)+(Number(o.received)||0));const dailyEl=document.querySelector('#onlineDailyIncome');if(dailyEl){const end=new Date();end.setHours(0,0,0,0);const dates=Array.from({length:6},(_,i)=>{const day=new Date(end);day.setDate(end.getDate()-i);const z=n=>String(n).padStart(2,'0');return `${day.getFullYear()}-${z(day.getMonth()+1)}-${z(day.getDate())}`;});dailyEl.innerHTML='<h4>Penghasilan per Hari</h4>'+dates.map(d=>'<div class="online-income-row"><span>'+fmtDate(d)+(d===todayISO()?' · Hari ini':'')+'</span><b>'+money(byDate[d]||0)+'</b></div>').join('');}const totalEl=document.querySelector('#onlineTotalSales');if(totalEl)totalEl.textContent=money(totalOnline);const todayEl=document.querySelector('#onlineTodaySales');if(todayEl)todayEl.textContent=money(byDate[todayISO()]||0);root.innerHTML=list.slice(0,12).map(o=>{const count=products.reduce((s,p)=>s+(Number(o.quantities?.[p.id])||0),0);const detail=products.filter(p=>(Number(o.quantities?.[p.id])||0)>0).map(p=>`<span class="online-item-line">${escapeHTML(p.name)} × ${Number(o.quantities[p.id])}<button type="button" class="delete-online-item" title="Hapus ${escapeHTML(p.name)} dari pesanan" data-online-item="${p.id}" data-online-id="${escapeHTML(o.id)}" data-online-date="${o.date}">×</button></span>`).join(' ')||'Tidak ada item';return `<div class="online-order-card"><div class="online-order-head"><strong>${escapeHTML(o.platform)} · ${fmtDate(o.date)}</strong><button type="button" class="danger-btn delete-online-order" data-online-id="${escapeHTML(o.id)}" data-online-date="${o.date}">Hapus Pesanan</button></div><div class="online-item-list">${detail}</div><small>${count} pcs${o.note?' · '+escapeHTML(o.note):''}</small><div class="order-money">Diterima: ${money(o.received)}</div></div>`;}).join('')||'<p class="muted">Belum ada order online yang dicatat.</p>'; }
 
 
 function renderExpenses(){

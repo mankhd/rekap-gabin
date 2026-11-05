@@ -20,3 +20,7 @@ body.light{background:#f5f6f7;color:#17191c}.light .sidebar{background:#fff;bord
 .expense-history-panel{margin-top:14px}.expense-total{display:block;font-size:26px;margin:14px 0;color:#bfe2d0}.light .expense-total{color:#277653}.expense-history-panel .danger-btn{padding:6px 9px;font-size:10px}
 
 .online-total-panel{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;margin:12px 0;border:1px solid var(--border);border-radius:12px;background:var(--panel-soft,rgba(128,128,128,.08))}.online-total-panel span{font-weight:600}.online-total-panel strong{font-size:1.2rem}
+
+.online-daily-income{margin:12px 0 16px;padding:12px;border:1px solid #29313a;border-radius:10px}.online-daily-income h4{margin:0 0 8px;font-size:13px}.online-income-row{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px solid rgba(120,130,140,.12);font-size:12px}.online-income-row b{white-space:nowrap}
+
+/* Keep the browser-native date picker appearance as in the original dashboard. */
